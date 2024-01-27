@@ -19,7 +19,7 @@ export const Stars = () => {
     };
 
     function createStarfield() {
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 1200; i++) {
         createStar();
       }
     };
@@ -28,7 +28,7 @@ export const Stars = () => {
   }, []); 
 
   return (
-    <div className="mt-auto py-3">
+    <div className="footer mt-auto py-3">
       <div className="starfield" id="starfield"></div>
     </div>
   );
