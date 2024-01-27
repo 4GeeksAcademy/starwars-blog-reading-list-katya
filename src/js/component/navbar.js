@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/navbar.css";
+import "../../styles/starwars.css";
 
 export const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ export const Navbar = () => {
           />
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -26,22 +26,22 @@ export const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item ">
-              <a class="nav-link active starwars-text-active" aria-current="page" href="#">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item ">
+              <a className="nav-link active starwars-text-active" aria-current="page" href="#">
                 Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link starwars-text" href="#">
+            <li className="nav-item">
+              <a className="nav-link starwars-text" href="#">
                 Characters
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link starwars-text" href="#">
+            <li className="nav-item">
+              <a className="nav-link starwars-text" href="#">
                 Planets
               </a>
             </li>
@@ -50,7 +50,7 @@ export const Navbar = () => {
         <div className="btn-group dropstart me-5">
           <button
             type="button"
-            className="starwars dropdown-toggle p-2 rounded"
+            className="starwars-btn dropdown-toggle p-2 rounded"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >

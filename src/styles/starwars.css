@@ -1,0 +1,24 @@
+.starwars-btn {
+	color:  #F9D71B;
+    background-color: #212529;
+    border: 0.1rem solid #F9D71B;
+}
+
+.starwars-border {
+    border: 0.1rem solid #F9D71B;
+}
+
+.starwars-text {
+    color:  #f9d81ba5!important;
+}
+
+.starwars-text-active {
+    color:  #F9D71B !important;
+}
+.starwars-bg {
+    background-image: url("https://media.istockphoto.com/id/1194080385/video/4k-video-footage-motion-of-shinny-stars-animation-on-black-background-graphic-motion-overlay.jpg?s=640x640&k=20&c=EFLldHDOb7owHuTvxz9B4odpxhWcmjYI7fpsl4fpgFY=") !important;
+  }
+
+.starwars-border-light {
+    border: 0.1rem solid #f9d81b96;
+}
