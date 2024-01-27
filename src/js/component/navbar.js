@@ -9,14 +9,15 @@ export const Navbar = () => {
       data-bs-theme="dark"
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link to={"/"}><a className="navbar-brand" href="#">
           <img
             src="https://cronkitenews.azpbs.org/wp-content/uploads/2021/07/navajo-star-wars-logo.png"
             alt="Logo"
             style={{ height: "40px" }}
             className="d-inline-block align-text-top img-thumbnail ms-5 starwars"
           />
-        </a>
+        </a></Link>
+        
         <button
           className="navbar-toggler"
           type="button"

@@ -12,7 +12,7 @@
     color:  #f9d81ba5!important;
 }
 
-.starwars-text-active {
+.starwars-text-active, #carousel-arrow-prev, #carousel-arrow-next {
     color:  #F9D71B !important;
 }
 .starwars-bg {
