@@ -8,22 +8,20 @@ export const ItemCard = () => {
   return (
     <div>
       {store.isInSingleView ? (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-5">
           <div className="card mb-3 starwars-bg starwars-border-light" style={{ maxWidth: "1200px" }}>
-            <div className="row g-0">
+            <div className="row g-0 flex-nowrap">
               <div className="col-md-4">
                 <img src="https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg" className="img-fluid rounded-start" alt="..." />
               </div>
-              <div className="card-body">
-                <h5 className="card-title starwars-text-active">Card title</h5>
+              <div className="card-body mt-3">
+                <h5 className="card-title starwars-text-active">Character/Planet Name</h5>
                 <p className="card-text starwars-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  Description
                 </p>
                 <p className="card-text starwars-text">
                   <small className="starwars-text">
-                    Last updated 3 mins ago
+                    Other infromation
                   </small>
                 </p>
               </div>

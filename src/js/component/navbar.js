@@ -54,17 +54,17 @@ export const Navbar = () => {
           </button>
           <ul className="dropdown-menu bg-dark bg-gradient p-0 starwars-border">
             <ul className="list-group border-0">
-              <p className="m-1 p-2 fs-6 text-warning">Characters</p>
+              <p className="m-1 p-2 fs-6 starwars-text-active">Characters</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <a className="dropdown-item text-warning fw-lighter" href="#">
+                <a className="dropdown-item starwars-text fw-lighter" href="#">
                   Example of a character
                 </a>
               </li>
             </ul>
             <ul className="list-group border-0">
-              <p className="m-1 p-2 fs-6 text-warning">Planets</p>
+              <p className="m-1 p-2 fs-6 starwars-text-active">Planets</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <a className="dropdown-item text-warning fw-lighter" href="#">
+                <a className="dropdown-item starwars-text fw-lighter" href="#">
                   Example of a planets
                 </a>
               </li>
