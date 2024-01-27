@@ -32,14 +32,10 @@ export const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item ">
               <a className="nav-link active starwars-text-active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link starwars-text" href="#">
                 Characters
               </a>
             </li>
+            
             <li className="nav-item">
               <a className="nav-link starwars-text" href="#">
                 Planets
