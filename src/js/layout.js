@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
+import { Characters } from "./views/characters";
 import { Single } from "./views/single";
+import { Planets } from "./views/planets";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -21,12 +21,11 @@ const Layout = () => {
         <Navbar />
         <Stars />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/demo" element={<Demo />} />
+          <Route path="/" element={<Characters />} />
+          <Route path="/planets" element={<Planets />} />
           <Route path="/single/:theid" element={<Single />} />
           <Route path="*" element={<h1>Not found!</h1>} />
         </Routes>
-	
       </BrowserRouter>
     </div>
   );

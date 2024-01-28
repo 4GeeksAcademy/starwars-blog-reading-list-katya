@@ -9,15 +9,17 @@ export const Navbar = () => {
       data-bs-theme="dark"
     >
       <div className="container-fluid">
-        <Link to={"/"}><a className="navbar-brand" href="#">
-          <img
-            src="https://cronkitenews.azpbs.org/wp-content/uploads/2021/07/navajo-star-wars-logo.png"
-            alt="Logo"
-            style={{ height: "40px" }}
-            className="d-inline-block align-text-top img-thumbnail ms-5 starwars"
-          />
-        </a></Link>
-        
+        <Link to={"/"}>
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://cronkitenews.azpbs.org/wp-content/uploads/2021/07/navajo-star-wars-logo.png"
+              alt="Logo"
+              style={{ height: "40px" }}
+              className="d-inline-block align-text-top img-thumbnail ms-5 starwars"
+            />
+          </a>
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -32,15 +34,20 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <a className="nav-link active starwars-text-active" aria-current="page" href="#">
+              <a
+                className="nav-link active starwars-text-active"
+                aria-current="page"
+                href="#"
+              >
                 Characters
               </a>
             </li>
-            
             <li className="nav-item">
-              <a className="nav-link starwars-text" href="#">
-                Planets
-              </a>
+              
+                <a className="nav-link starwars-text" href="#">
+                  Planets
+                </a>
+              
             </li>
           </ul>
         </div>
@@ -51,7 +58,7 @@ export const Navbar = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            My favorites
+            My favorites (<strong style={{ fontSize: "14px" }}>2</strong>)
           </button>
           <ul className="dropdown-menu bg-dark bg-gradient p-0 starwars-border">
             <ul className="list-group border-0">

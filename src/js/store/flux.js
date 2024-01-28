@@ -1,51 +1,69 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+  return {
+    store: {
+      planets: [],
+      characters: [],
+      isInSingleView: false,
+      isInPlantesView: false,
+      starsBg: "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
+    },
+    actions: {
 
-			isInSingleView: false,
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+      loadSomeData: () => {
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+        fetch("https://www.swapi.tech/api/planets/")
+          .then((response) => {
+            if (!response.ok) {
+              throw Error(response.status);
+            }
+            return response.json();
+          })
+          .then((planets) => {
+            console.log(planets.results)
+            setStore({ planets: planets.results });
+          })
+          .catch((error) => {
+            console.log(error);
+        });
 
-				//reset the global store
-				setStore({ demo: demo });
-			},
+        fetch("https://www.swapi.tech/api/people/")
+              .then((response) => {
+                if (!response.ok) {
+                  throw Error(response.status);
+                }
+                return response.json();
+              })
+              .then((characters) => {
+                console.log(characters.results)
+                setStore({ characters: characters.results });
+              })
+              .catch((error) => {
+                console.log(error);
+            });
+      },
+      
+      changeToSingleView: () => {
+        setStore({ isInSingleView: true });
+      },
 
-			changeView: () => {
-				setStore({isInSingleView: true})
-			}
-		}
-	};
+      toggleViews: () => {
+        const store = getStore();
+        if (store.isInPlantesView) {
+          setStore({isInPlantesView: false})
+        } else {
+          setStore({isInPlantesView: true})
+        }
+      },
+
+      groupItems: (itemsList, numberToGroup) => {
+        const groupedItems = [];
+        for (let i = 0; i < itemsList.length; i += numberToGroup) {
+          groupedItems.push(itemsList.slice(i, i + numberToGroup));
+        }
+        return groupedItems;
+      }
+    },
+  };
 };
 
 export default getState;
