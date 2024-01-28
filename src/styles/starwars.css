@@ -1,7 +1,23 @@
 .starwars-btn {
 	color:  #F9D71B;
-    background-color: #212529;
+    background-color: #21252901;
     border: 0.1rem solid #F9D71B;
+}
+
+.starwars-btn:active, .starwars-btn:hover {
+    background-color: #f9d81b70;
+    box-shadow: 0 0 5px #f9d81b70; 
+}
+
+.favorite-btn {
+    color: #DC3545;
+    background-color: #21252901;
+    border: 0.1rem solid #DC3545;
+}
+
+.favorite-btn:active, .favorite-btn:hover {
+    background-color: #dc354689;
+    box-shadow: 0 0 5px #dc354689; 
 }
 
 .starwars-border {

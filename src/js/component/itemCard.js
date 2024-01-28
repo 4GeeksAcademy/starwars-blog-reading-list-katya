@@ -58,10 +58,10 @@ export const ItemCard = () => {
               <button
                 type="button"
                 href="#"
-                className="btn btn-outline-danger p-2"
+                className="favorite-btn p-2 rounded"
                 style={{ width: "40px" }}
               >
-                <i className="far fa-heart text-danger"></i>
+                <i className="fas fa-heart text-danger"></i>
               </button>
             </div>
           </div>
