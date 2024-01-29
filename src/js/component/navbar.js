@@ -34,7 +34,7 @@ export const Navbar = () => {
             <li className="nav-item ">
               <Link
                 to={"/"}
-                className="nav-link active starwars-text-active"
+                className="nav-link starwars-text-active"
                 aria-current="page"
               >
                 Characters
