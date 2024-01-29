@@ -73,8 +73,8 @@ export const CharacterCard = (props) => {
             <h5 className="card-title starwars-text-active">{props.name}</h5>
             <div className="card-text starwars-text mb-3">
               <p>Gender: {props.gender}</p>
-              <p>Hair-Color: {props.hairColor}</p>
-              <p>Eye-Color: {props.eyeColor}</p>
+              <p>Hair-Color: {props.hair_color}</p>
+              <p>Eye-Color: {props.eye_olor}</p>
             </div>
             <div className="d-flex justify-content-between">
               <button

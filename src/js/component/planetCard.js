@@ -30,7 +30,7 @@ export const PlanetCard = (props) => {
                   <div className="d-flex flex-row card-text">
                     <div className="m-2">
                       <small className="red-text">Climate</small>
-                      <p className="red-text-active">Example{props.climate}</p>
+                      <p className="red-text-active">{props.climate}</p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Population</small>
@@ -42,7 +42,7 @@ export const PlanetCard = (props) => {
                     </div>
                     <div className="m-2">
                       <small className="red-text">Rotation Period</small>
-                      <p className="red-text-active">{props.rotation.period}</p>
+                      <p className="red-text-active">{props.rotation_period}</p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Diameter</small>
