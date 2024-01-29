@@ -45,6 +45,11 @@ export const Navbar = () => {
                 Planets
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/favorites"} className="nav-link starwars-text">
+                Favorites
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="btn-group dropstart me-5">

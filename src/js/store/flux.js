@@ -3,6 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       planets: [],
       characters: [],
+      favoritePlanets: [],
+      favoriteCharacters: [],
+      loading: true,
       isInSingleView: false,
       isInPlantesView: false,
       starsBg:
@@ -81,6 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error("Error fetching data:", error);
         }
+        setStore({loading: false})
       },
 
       changeToSingleView: () => {

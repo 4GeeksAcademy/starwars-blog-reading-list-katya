@@ -10,7 +10,7 @@ export const ItemsCarousel = () => {
   const groupedCharacters = actions.groupItems(store.characters, 4);
   const groupedPlanets = actions.groupItems(store.planets, 4);
 
-  console.log(groupedCharacters, groupedPlanets);
+  //console.log(groupedCharacters, groupedPlanets);
 
   return (
     <div id="carouselIndicators" className="carousel slide">
@@ -53,8 +53,8 @@ export const ItemsCarousel = () => {
                       gender={character.gender}
                       height={character.height}
                       skin_color={character.skin_color}
-                      eye_color={character.eye_color}
                       hair_color={character.hair_color}
+                      eye_color={character.eye_color}
                     />
                   ))}
                 </div>

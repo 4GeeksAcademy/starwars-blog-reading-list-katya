@@ -61,7 +61,7 @@ export const CharacterCard = (props) => {
       ) : (
         <div
           className="card m-3 mb-5 starwars-bg starwars-border-light"
-          style={{ minWidth: "20rem" }}
+          style={{ minWidth: "20rem", height: "492px" }}
         >
           <img
             src={store.starsBg}
@@ -70,24 +70,24 @@ export const CharacterCard = (props) => {
             style={{ height: "250px" }}
           />
           <div className="card-body">
-            <h5 className="card-title starwars-text-active">{props.name}</h5>
-            <div className="card-text starwars-text mb-3">
-              <p>Gender: {props.gender}</p>
-              <p>Hair-Color: {props.hair_color}</p>
-              <p>Eye-Color: {props.eye_olor}</p>
+            <h5 className="card-title starwars-text-active mb-3">{props.name}</h5>
+            <div className="card-text red-text-active">
+              <p>Gender: <span className="starwars-text-active">{props.gender}</span></p>
+              <p>Hair color: <span className="starwars-text-active">{props.hair_color}</span></p>
+              <p>Eye color: <span className="starwars-text-active">{props.eye_color}</span></p>
             </div>
-            <div className="d-flex justify-content-between">
+            <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">
               <button
                 type="button"
                 href="#"
-                className="starwars-btn p-2 rounded"
+                className="starwars-btn p-2 rounded mx-3"
               >
                 Learn more
               </button>
               <button
                 type="button"
                 href="#"
-                className="favorite-btn p-2 rounded"
+                className="favorite-btn p-2 rounded mx-3"
                 style={{ width: "40px" }}
               >
                 <i className="fas fa-heart text-danger"></i>

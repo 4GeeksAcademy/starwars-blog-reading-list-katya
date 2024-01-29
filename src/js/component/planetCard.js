@@ -57,7 +57,7 @@ export const PlanetCard = (props) => {
       ) : (
         <div
           className="card m-3 mb-5 starwars-bg starwars-border-light"
-          style={{ minWidth: "20rem" }}
+          style={{ width: "20rem", height: "462px" }}
         >
           <img
             src={store.starsBg}
@@ -66,23 +66,31 @@ export const PlanetCard = (props) => {
             style={{ height: "250px" }}
           />
           <div className="card-body">
-            <h5 className="card-title starwars-text-active">{props.name}</h5>
-            <div className="card-text starwars-text mb-3">
-              <p>Population: {props.population}</p>
-              <p>Terrain: {props.terrain}</p>
+            <h5 className="card-title starwars-text-active mb-3">
+              {props.name}
+            </h5>
+            <div className="card-text red-text-active">
+              <p>
+                Population:{" "}
+                <span className="starwars-text-active">{props.population}</span>
+              </p>
+              <p className="text-wrap">
+                Terrain:{" "}
+                <span className="starwars-text-active">{props.terrain}</span>
+              </p>
             </div>
-            <div className="d-flex justify-content-between">
+            <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">
               <button
                 type="button"
                 href="#"
-                className="starwars-btn p-2 rounded"
+                className="starwars-btn p-2 rounded mx-3"
               >
                 Learn more
               </button>
               <button
                 type="button"
                 href="#"
-                className="favorite-btn p-2 rounded"
+                className="favorite-btn p-2 rounded mx-3"
                 style={{ width: "40px" }}
               >
                 <i className="fas fa-heart text-danger"></i>

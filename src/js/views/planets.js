@@ -15,9 +15,13 @@ export const Planets = () => {
   return (
     <div>
       <div className="d-flex justify-content-center mt-5">
-        <div className="text-center mt-5 d-flex flex-column">
-          <ItemsCarousel />
-        </div>
+        {store.loading ? (
+          <p className="starwars-text">Loading...</p>
+        ) : (
+          <div className="text-center mt-5 d-flex flex-column">
+            <ItemsCarousel />
+          </div>
+        )}
       </div>
     </div>
   );
