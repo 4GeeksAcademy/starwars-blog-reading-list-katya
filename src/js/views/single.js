@@ -8,7 +8,7 @@ export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 
-	actions.changetoSingleView();
+	actions.changeToSingleView();
 
 	return (
 		<div></div>

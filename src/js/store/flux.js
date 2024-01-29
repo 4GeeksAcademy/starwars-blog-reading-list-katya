@@ -4,13 +4,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       planets: [],
       characters: [],
       isInSingleView: false,
-      isInPlantesView: false,
-      starsBg: "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
+      isInPlantesView: true,
+      starsBg:
+        "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
     },
     actions: {
-
       loadSomeData: () => {
-
         fetch("https://www.swapi.tech/api/planets/")
           .then((response) => {
             if (!response.ok) {
@@ -19,40 +18,36 @@ const getState = ({ getStore, getActions, setStore }) => {
             return response.json();
           })
           .then((planets) => {
-            console.log(planets.results)
+            console.log(planets.results);
             setStore({ planets: planets.results });
           })
           .catch((error) => {
             console.log(error);
-        });
+          });
 
         fetch("https://www.swapi.tech/api/people/")
-              .then((response) => {
-                if (!response.ok) {
-                  throw Error(response.status);
-                }
-                return response.json();
-              })
-              .then((characters) => {
-                console.log(characters.results)
-                setStore({ characters: characters.results });
-              })
-              .catch((error) => {
-                console.log(error);
-            });
+          .then((response) => {
+            if (!response.ok) {
+              throw Error(response.status);
+            }
+            return response.json();
+          })
+          .then((characters) => {
+            console.log(characters.results);
+            setStore({ characters: characters.results });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       },
-      
+
       changeToSingleView: () => {
         setStore({ isInSingleView: true });
       },
 
       toggleViews: () => {
-        const store = getStore();
-        if (store.isInPlantesView) {
-          setStore({isInPlantesView: false})
-        } else {
-          setStore({isInPlantesView: true})
-        }
+        const store = getStore()
+        setStore({ isInPlanetsView: !store.isInPlanetsView })
       },
 
       groupItems: (itemsList, numberToGroup) => {
@@ -61,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           groupedItems.push(itemsList.slice(i, i + numberToGroup));
         }
         return groupedItems;
-      }
+      },
     },
   };
 };

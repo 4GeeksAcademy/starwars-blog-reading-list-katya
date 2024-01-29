@@ -10,14 +10,12 @@ export const Navbar = () => {
     >
       <div className="container-fluid">
         <Link to={"/"}>
-          <a className="navbar-brand" href="#">
-            <img
-              src="https://cronkitenews.azpbs.org/wp-content/uploads/2021/07/navajo-star-wars-logo.png"
-              alt="Logo"
-              style={{ height: "40px" }}
-              className="d-inline-block align-text-top img-thumbnail ms-5 starwars"
-            />
-          </a>
+          <img
+            src="https://cronkitenews.azpbs.org/wp-content/uploads/2021/07/navajo-star-wars-logo.png"
+            alt="Logo"
+            style={{ height: "40px" }}
+            className="d-inline-block align-text-top img-thumbnail ms-5 starwars"
+          />
         </Link>
 
         <button
@@ -34,20 +32,18 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <a
+              <Link
+                to={"/"}
                 className="nav-link active starwars-text-active"
                 aria-current="page"
-                href="#"
               >
                 Characters
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              
-                <a className="nav-link starwars-text" href="#">
-                  Planets
-                </a>
-              
+              <Link to={"/planets"} className="nav-link starwars-text">
+                Planets
+              </Link>
             </li>
           </ul>
         </div>

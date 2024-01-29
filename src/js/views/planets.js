@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { ItemsCarousel } from "../component/itemsCarousel";
 import "../../styles/home.css";
@@ -6,7 +6,9 @@ import "../../styles/home.css";
 export const Planets = () => {
   const { store, actions } = useContext(Context);
 
-  actions.toggleViews();
+  useEffect(() => {
+    actions.toggleViews()
+  },[])
 
   return (
     <div>
