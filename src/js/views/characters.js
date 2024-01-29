@@ -6,8 +6,13 @@ import "../../styles/home.css";
 export const Characters = () => {
   const { store, actions } = useContext(Context);
 
+  console.log(store.characters)
+
   useEffect(() => {
-    actions.toggleViews()
+    actions.loadSomeData();
+    if (store.isInPlanetsView) {
+      actions.toggleViews()
+    }
   },[])
 
   return (
