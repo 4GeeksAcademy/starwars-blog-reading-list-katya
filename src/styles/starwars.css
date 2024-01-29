@@ -1,49 +1,58 @@
 .starwars-btn {
-	color:  #F9D71B;
-    background-color: #21252901;
-    border: 0.1rem solid #F9D71B;
+  color: #f9d71b;
+  background-color: #21252901;
+  border: 0.1rem solid #f9d71b;
 }
 
-.starwars-btn:active, .starwars-btn:hover {
-    background-color: #f9d81b70;
-    box-shadow: 0 0 5px #f9d81b70; 
+.starwars-btn:active,
+.starwars-btn:hover {
+  background-color: #f9d81b70;
+  box-shadow: 0 0 5px #f9d81b70;
 }
 
 .favorite-btn {
-    color: #DC3545;
-    background-color: #21252901;
-    border: 0.1rem solid #DC3545;
+  color: #dc3545;
+  background-color: #21252901;
+  border: 0.1rem solid #dc3545;
 }
 
-.favorite-btn:active, .favorite-btn:hover {
-    background-color: #dc354689;
-    box-shadow: 0 0 5px #dc354689; 
+.favorite-btn:active,
+.favorite-btn:hover {
+  background-color: #dc354689;
+  box-shadow: 0 0 5px #dc354689;
 }
 
 .starwars-border {
-    border: 0.1rem solid #F9D71B;
+  border: 0.1rem solid #f9d71b;
 }
 
 .starwars-text {
-    color:  #f9d81ba5!important;
+  color: #f9d81ba5 !important;
 }
 
-.starwars-text-active, #carousel-arrow-prev, #carousel-arrow-next {
-    color:  #F9D71B !important;
+.starwars-text-active,
+#carousel-arrow-prev,
+#carousel-arrow-next {
+  color: #f9d71b !important;
 }
 
 .red-text {
-    color: #dc354689
+  color: #dc354689;
 }
 
 .red-text-active {
-    color: #DC3545
+  color: #dc3545;
 }
 
 .starwars-bg {
-    background-image: url("https://media.istockphoto.com/id/1194080385/video/4k-video-footage-motion-of-shinny-stars-animation-on-black-background-graphic-motion-overlay.jpg?s=640x640&k=20&c=EFLldHDOb7owHuTvxz9B4odpxhWcmjYI7fpsl4fpgFY=") !important;
-  }
+  background-image: url("https://media.istockphoto.com/id/1194080385/video/4k-video-footage-motion-of-shinny-stars-animation-on-black-background-graphic-motion-overlay.jpg?s=640x640&k=20&c=EFLldHDOb7owHuTvxz9B4odpxhWcmjYI7fpsl4fpgFY=") !important;
+}
 
 .starwars-border-light {
-    border: 0.1rem solid #f9d81b96;
+  border: 0.1rem solid #f9d81b96;
+}
+
+.carousel-control {
+  top: 50% !important;
+  height: 50px !important;
 }

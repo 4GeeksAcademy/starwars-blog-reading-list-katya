@@ -14,28 +14,6 @@ export const ItemsCarousel = () => {
 
   return (
     <div id="carouselIndicators" className="carousel slide">
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselIndicators"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselIndicators"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselIndicators"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
       <div className="carousel-inner">
         {!store.isInPlanetsView
           ? groupedCharacters.map((group, index) => (
@@ -85,25 +63,23 @@ export const ItemsCarousel = () => {
         {}
       </div>
       <button
-        className="carousel-control-prev"
+        className="carousel-control-prev carousel-control"
         type="button"
         data-bs-target="#carouselIndicators"
         data-bs-slide="prev"
-        style={{ width: "1.5%" }}
       >
         <span
           id="carousel-arrow-prev"
-          className="carousel-control-prev-icon"
+          className="carousel-control-prev-icon "
           aria-hidden="true"
         ></span>
         <span className="visually-hidden">Previous</span>
       </button>
       <button
-        className="carousel-control-next"
+        className="carousel-control-next carousel-control"
         type="button"
         data-bs-target="#carouselIndicators"
         data-bs-slide="next"
-        style={{ width: "1.5%" }}
       >
         <span
           id="carousel-arrow-next"
