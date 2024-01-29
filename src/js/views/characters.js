@@ -7,6 +7,7 @@ export const Characters = () => {
   const { store, actions } = useContext(Context);
 
   console.log(store.characters)
+  console.log(store.planets)
 
   useEffect(() => {
     actions.loadSomeData();

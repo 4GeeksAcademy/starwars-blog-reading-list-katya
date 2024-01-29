@@ -13,86 +13,74 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         try {
           // Planets
-          const planetsResponse = await fetch("https://www.swapi.tech/api/planets/");
+          const planetsResponse = await fetch(
+            "https://www.swapi.tech/api/planets/"
+          );
           if (!planetsResponse.ok) {
             throw Error(planetsResponse.status);
           }
           const planets = await planetsResponse.json();
-          console.log("Planets:", planets.results);
-      
+
+          // Details for each planet
+          const planetDetailsPromises = planets.results.map(
+            async (planet) => {
+              try {
+                const planetResponse = await fetch(
+                  `https://www.swapi.tech/api/planets/${planet.uid}`
+                );
+                if (!planetResponse.ok) {
+                  throw Error(planetResponse.status);
+                }
+                const planetDetails = await planetResponse.json();
+                console.log("Planet Details:", planetDetails.result.properties);
+                setStore({
+                  planets: store.planets.concat(planetDetails.result.properties),
+                });
+              } catch (error) {
+                console.log("Error fetching planet details:", error);
+              }
+            }
+          );
+
           // Characters
-          const charactersResponse = await fetch("https://www.swapi.tech/api/people/");
+          const charactersResponse = await fetch(
+            "https://www.swapi.tech/api/people/"
+          );
           if (!charactersResponse.ok) {
             throw Error(charactersResponse.status);
           }
           const characters = await charactersResponse.json();
-          console.log("Characters:", characters.results);
-      
+
           // Details for each character
-          const characterDetailsPromises = characters.results.map(async (character) => {
-            try {
-              const characterResponse = await fetch(`https://www.swapi.tech/api/people/${character.uid}`);
-              if (!characterResponse.ok) {
-                throw Error(characterResponse.status);
+          const characterDetailsPromises = characters.results.map(
+            async (character) => {
+              try {
+                const characterResponse = await fetch(
+                  `https://www.swapi.tech/api/people/${character.uid}`
+                );
+                if (!characterResponse.ok) {
+                  throw Error(characterResponse.status);
+                }
+                const characterDetails = await characterResponse.json();
+                console.log(
+                  "Character Details:",
+                  characterDetails.result.properties
+                );
+                setStore({
+                  characters: store.characters.concat(
+                    characterDetails.result.properties
+                  ),
+                });
+              } catch (error) {
+                console.log("Error fetching character details:", error);
               }
-              const characterDetails = await characterResponse.json();
-              console.log("Character Details:", characterDetails.result.properties);
-              setStore({characters: store.characters.concat(characterDetails.result.properties)})
-            } catch (error) {
-              console.log("Error fetching character details:", error);
             }
-          });
-      
-          await Promise.all(characterDetailsPromises);
-      
+          );
+
+          await Promise.all([characterDetailsPromises, planetDetailsPromises]);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
-      },
-
-      loadSomeData1: () => {
-        fetch("https://www.swapi.tech/api/planets/")
-          .then((response) => {
-            if (!response.ok) {
-              throw Error(response.status);
-            }
-            return response.json();
-          })
-          .then((planets) => {
-            console.log(planets.results);
-            setStore({ planets: planets.results });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        fetch("https://www.swapi.tech/api/people/")
-          .then((response) => {
-            if (!response.ok) {
-              throw Error(response.status);
-            }
-            return response.json();
-          })
-          .then((characters) => {
-            characters.results.map((character) => {
-              fetch(`https://www.swapi.tech/api/people/${characters.uid}`)
-              .then((response) => {
-                if (!response.ok) {
-                  throw Error(response.status);
-                }
-                return response.json();
-              })
-              .then((character) => {
-                console.log(character)
-              })
-              .catch((error) => {
-                console.log(error)
-              })
-            })
-          })
-          .catch((error) => {
-            console.log(error);
-          });
       },
 
       changeToSingleView: () => {
@@ -100,8 +88,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       toggleViews: () => {
-        const store = getStore()
-        setStore({ isInPlanetsView: !store.isInPlanetsView })
+        const store = getStore();
+        setStore({ isInPlanetsView: !store.isInPlanetsView });
       },
 
       groupItems: (itemsList, numberToGroup) => {
