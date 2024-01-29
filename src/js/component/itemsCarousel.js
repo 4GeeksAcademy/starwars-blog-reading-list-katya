@@ -63,29 +63,31 @@ export const ItemsCarousel = () => {
         {}
       </div>
       <button
-        className="carousel-control-prev carousel-control"
+        className="carousel-control-prev position-absolute top-50 start-0 translate-middle"
         type="button"
         data-bs-target="#carouselIndicators"
         data-bs-slide="prev"
       >
-        <span
-          id="carousel-arrow-prev"
-          className="carousel-control-prev-icon "
+        {" "}
+        <i
           aria-hidden="true"
-        ></span>
+          id="carousel-arrow-prev"
+          className="fas fa-chevron-circle-left fs-3"
+        ></i>
         <span className="visually-hidden">Previous</span>
       </button>
       <button
-        className="carousel-control-next carousel-control"
+        className="carousel-control-next position-absolute top-50 start-100 translate-middle"
         type="button"
         data-bs-target="#carouselIndicators"
         data-bs-slide="next"
       >
-        <span
-          id="carousel-arrow-next"
-          className="carousel-control-next-icon"
+        {" "}
+        <i
           aria-hidden="true"
-        ></span>
+          id="carousel-arrow-next"
+          className="fas fa-chevron-circle-right fs-3"
+        ></i>
         <span className="visually-hidden">Next</span>
       </button>
     </div>
