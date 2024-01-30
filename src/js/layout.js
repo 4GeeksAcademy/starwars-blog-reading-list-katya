@@ -2,18 +2,18 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Characters } from "./views/characters";
-import { Single } from "./views/single";
+import { SingleCharacter } from "./views/singleCharacter";
 import { Planets } from "./views/planets";
+import { SinglePlanet } from "./views/singlePlanet";
 import { Favorites } from "./views/favorites";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Stars } from "./component/stars";
 
-//create your first component
+
 const Layout = () => {
-  //the basename is used when your project is published in a subdirectory and not in the root of the domain
-  // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
+  
   const basename = process.env.BASENAME || "";
 
   return (
@@ -25,7 +25,8 @@ const Layout = () => {
           <Route path="/" element={<Characters />} />
           <Route path="/planets" element={<Planets />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/single/:id" element={<Single />} />
+          <Route path="/character/:id" element={<SingleCharacter />} />
+          <Route path="/planet/:id" element={<SinglePlanet />} />
           <Route path="*" element={<h1>Not found!</h1>} />
         </Routes>
       </BrowserRouter>

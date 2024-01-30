@@ -10,7 +10,6 @@ export const ItemsCarousel = () => {
   const groupedCharacters = actions.groupItems(store.characters, 4);
   const groupedPlanets = actions.groupItems(store.planets, 4);
 
-  
   return (
     <div id="carouselIndicators" className="carousel slide">
       <div className="carousel-inner">
@@ -30,7 +29,7 @@ export const ItemsCarousel = () => {
                       hair_color={character.hair_color}
                       eye_color={character.eye_color}
                     />
-))}
+                  ))}
                 </div>
               </div>
             ))
@@ -44,12 +43,8 @@ export const ItemsCarousel = () => {
                     <PlanetCard
                       key={index}
                       name={planet.name}
-                      id={planet.uid}
-                      climate={planet.climate}
+                      id={planet.id}
                       population={planet.population}
-                      orbital_period={planet.orbital_period}
-                      rotation_period={planet.rotation_period}
-                      diameter={planet.diameter}
                       terrain={planet.terrain}
                     />
                   ))}

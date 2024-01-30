@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       loadSomeData: async () => {
         const store = getStore();
+
         try {
           // Planets
           const planetsResponse = await fetch(
@@ -33,9 +34,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                 throw Error(planetResponse.status);
               }
               const planetDetails = await planetResponse.json();
-              setStore({
-                planets: store.planets.concat(planetDetails.result.properties),
-              });
+              return {
+                ...planetDetails.result.properties,
+                description: planetDetails.result.description,
+                id: planetDetails.result._id,
+                uid: planetDetails.result.uid,
+              };
+
             } catch (error) {
               console.log("Error fetching planet details:", error);
             }
@@ -77,13 +82,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           const charactersWithDetails = await Promise.all(
             characterDetailsPromises
           );
+          const planetsWithDetails = await Promise.all(
+            planetDetailsPromises
+          );
 
           setStore({
             characters: store.characters.concat(charactersWithDetails),
+            planets: store.planets.concat(planetsWithDetails)
           });
         } catch (error) {
           console.error("Error fetching data:", error);
         }
+
         setStore({ loading: false });
       },
 
@@ -102,29 +112,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       openCharacter: (
         id,
-        setName,
-        setDescription,
-        setBirthYear,
-        setGender,
-        setHeight,
-        setSkinColor,
-        setEyeColor
+        setCharacterDetails
       ) => {
         const store = getStore();
         const character = store.characters.find(
           (character) => character.id === id
         );
-        setName(character.name);
-        setDescription(character.description);
-        setBirthYear(character.birth_year);
-        setGender(character.gender);
-        setHeight(character.height);
-        setSkinColor(character.skin_color);
-        setEyeColor(character.eye_color);
+        setCharacterDetails({
+          name: character.name,
+          description: character.description,
+          birthYear: character.birth_year,
+          gender: character.gender,
+          height: character.height,
+          skinColor: character.skin_color,
+          eyeColor: character.eye_color,
+        });
         setStore({loading: false})
       },
 
-      openPlanet: () => {},
+      openPlanet: (id, setPlanetDetails) => {
+        const store = getStore();
+        const planet = store.planets.find(
+          (planet) => planet.id === id
+        );
+        setPlanetDetails({
+          name: planet.name,
+          description: planet.description,
+          climate: planet.climate,
+          population: planet.population,
+          orbital_period: planet.orbital_period,
+          rotation_period: planet.rotation_period,
+          diameter: planet.diameter
+        })
+        setStore({loading: false})
+      },
 
       addToFavorites: () => {},
     },

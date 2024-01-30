@@ -33,14 +33,13 @@ export const CharacterCard = (props) => {
           </p>
         </div>
         <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">
-          <Link to={`/single/${props.id}`}>
+          <Link to={`/character/${props.id}`}>
             <button
               type="button"
               href="#"
               className="starwars-btn p-2 rounded mx-3"
               onClick={() => {
                 actions.openCharacter(props.id);
-                console.log("I am here")
               }}
             >
               Learn more

@@ -2,29 +2,26 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Single = () => {
+export const SingleCharacter = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [birthYear, setBirthYear] = useState("");
-  const [gender, setGender] = useState("");
-  const [height, setHeight] = useState("");
-  const [skinColor, setSkinColor] = useState("");
-  const [eyeColor, setEyeColor] = useState("");
+  const [characterDetails, setCharacterDetails] = useState({
+    name: "",
+    description: "",
+    birthYear: "",
+    gender: "",
+    height: "",
+    skinColor: "",
+    eyeColor: "",
+  });
 
   useEffect(() => {
-    actions.openCharacter(
-      id,
-      setName,
-      setDescription,
-      setBirthYear,
-      setGender,
-      setHeight,
-      setSkinColor,
-      setEyeColor
-    );
-  }, []);
+    if (store.characters.length > 0) {
+      actions.openCharacter(id, setCharacterDetails);
+    } else {
+      actions.loadSomeData();
+    }
+  }, [store.characters, id]);
 
   return (
     <div>
@@ -46,14 +43,16 @@ export const Single = () => {
               </div>
               <div className="card-body mt-3">
                 <div className="d-flex justify-content-center flex-column">
-                  <h2 className="card-title starwars-text-active">{name}</h2>
+                  <h2 className="card-title starwars-text-active">
+                    {characterDetails.name}
+                  </h2>
                   <p className="card-text starwars-text me-2">
-                    {description} Lorem ipsum dolor sit amet consectetur
-                    adipiscing elit congue aptent interdum in nisi, fringilla
-                    donec ad at aliquet semper velit praesent ornare eros
-                    vulputate. Vitae nullam eu curabitur at phasellus fringilla
-                    volutpat aptent sem, augue quam inceptos lobortis porta
-                    mattis venenatis nostra. Sollicitudin sodales gravida
+                    {characterDetails.description} Lorem ipsum dolor sit amet
+                    consectetur adipiscing elit congue aptent interdum in nisi,
+                    fringilla donec ad at aliquet semper velit praesent ornare
+                    eros vulputate. Vitae nullam eu curabitur at phasellus
+                    fringilla volutpat aptent sem, augue quam inceptos lobortis
+                    porta mattis venenatis nostra. Sollicitudin sodales gravida
                     pharetra purus sociosqu sem taciti etiam, tortor aliquet
                     mauris curabitur elementum luctus porttitor, enim laoreet
                     curae lacinia molestie facilisis volutpat. Donec risus sed
@@ -70,23 +69,33 @@ export const Single = () => {
                   <div className="d-flex flex-row card-text">
                     <div className="m-2 ms-0">
                       <small className="red-text">Birth Year</small>
-                      <p className="red-text-active">{birthYear}</p>
+                      <p className="red-text-active">
+                        {characterDetails.birthYear}
+                      </p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Gender</small>
-                      <p className="red-text-active">{gender}</p>
+                      <p className="red-text-active">
+                        {characterDetails.gender}
+                      </p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Height</small>
-                      <p className="red-text-active">{height}</p>
+                      <p className="red-text-active">
+                        {characterDetails.height}
+                      </p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Skin Color</small>
-                      <p className="red-text-active">{skinColor}</p>
+                      <p className="red-text-active">
+                        {characterDetails.skinColor}
+                      </p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Eye Color</small>
-                      <p className="red-text-active">{eyeColor}</p>
+                      <p className="red-text-active">
+                        {characterDetails.eyeColor}
+                      </p>
                     </div>
                   </div>
                 </div>
