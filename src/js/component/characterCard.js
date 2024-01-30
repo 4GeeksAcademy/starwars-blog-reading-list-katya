@@ -6,8 +6,6 @@ import "../../styles/starwars.css";
 export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
 
-  console.log("I am ID from characterCard", props.id)
-
   return (
     <div
       className="card m-3 mb-5 starwars-bg starwars-border-light"

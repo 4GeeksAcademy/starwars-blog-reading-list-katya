@@ -51,33 +51,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           const characters = await charactersResponse.json();
 
           // Details for each character
-          const characterDetailsPromises = characters.results.map(async (character) => {
-            try {
-              const characterResponse = await fetch(`https://www.swapi.tech/api/people/${character.uid}`);
-              if (!characterResponse.ok) {
-                throw Error(characterResponse.status);
+          const characterDetailsPromises = characters.results.map(
+            async (character) => {
+              try {
+                const characterResponse = await fetch(
+                  `https://www.swapi.tech/api/people/${character.uid}`
+                );
+                if (!characterResponse.ok) {
+                  throw Error(characterResponse.status);
+                }
+                const characterDetails = await characterResponse.json();
+
+                return {
+                  ...characterDetails.result.properties,
+                  description: characterDetails.result.description,
+                  id: characterDetails.result._id,
+                  uid: characterDetails.result.uid,
+                };
+              } catch (error) {
+                console.log("Error fetching character details:", error);
               }
-              const characterDetails = await characterResponse.json();
-      
-              return {
-                ...characterDetails.result.properties,
-                description: characterDetails.result.description,
-                id: characterDetails.result._id,
-                uid: characterDetails.result.uid
-              };
-            } catch (error) {
-              console.log("Error fetching character details:", error);
             }
-          });
-      
-          const charactersWithDetails = await Promise.all(characterDetailsPromises);
-      
+          );
+
+          const charactersWithDetails = await Promise.all(
+            characterDetailsPromises
+          );
+
           setStore({
-            characters: store.characters.concat(charactersWithDetails)
+            characters: store.characters.concat(charactersWithDetails),
           });
         } catch (error) {
           console.error("Error fetching data:", error);
-          
         }
         setStore({ loading: false });
       },
@@ -95,17 +100,33 @@ const getState = ({ getStore, getActions, setStore }) => {
         return groupedItems;
       },
 
-      openCharacter: (id) => {
+      openCharacter: (
+        id,
+        setName,
+        setDescription,
+        setBirthYear,
+        setGender,
+        setHeight,
+        setSkinColor,
+        setEyeColor
+      ) => {
         const store = getStore();
-        console.log("Open character with ID:", id);
-        const character = store.characters.find((character) => character.id === id);
+        const character = store.characters.find(
+          (character) => character.id === id
+        );
+        setName(character.name);
+        setDescription(character.description);
+        setBirthYear(character.birth_year);
+        setGender(character.gender);
+        setHeight(character.height);
+        setSkinColor(character.skin_color);
+        setEyeColor(character.eye_color);
+        setStore({loading: false})
       },
 
       openPlanet: () => {},
 
-      addToFavorites: () => {
-
-      }
+      addToFavorites: () => {},
     },
   };
 };

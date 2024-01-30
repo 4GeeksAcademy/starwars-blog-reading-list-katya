@@ -10,7 +10,6 @@ export const ItemsCarousel = () => {
   const groupedCharacters = actions.groupItems(store.characters, 4);
   const groupedPlanets = actions.groupItems(store.planets, 4);
 
-  console.log("I am groupedCharacters from ItemCarousel:", groupedCharacters)
   
   return (
     <div id="carouselIndicators" className="carousel slide">
