@@ -6,6 +6,8 @@ import "../../styles/starwars.css";
 export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
 
+  console.log("I am ID from characterCard", props.id)
+
   return (
     <div
       className="card m-3 mb-5 starwars-bg starwars-border-light"
@@ -39,7 +41,7 @@ export const CharacterCard = (props) => {
               href="#"
               className="starwars-btn p-2 rounded mx-3"
               onClick={() => {
-                actions.openCharacter(props.uid);
+                actions.openCharacter(props.id);
                 console.log("I am here")
               }}
             >

@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favoritePlanets: [],
       favoriteCharacters: [],
       loading: true,
-      isInPlantesView: false,
+      isInPlanetsView: false,
       starsBg:
         "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
     },
@@ -95,41 +95,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         return groupedItems;
       },
 
-      openCharacter: (
-        id,
-        setCharacterName,
-        setBirthYear,
-        setGender,
-        setHeight,
-        setSkinColor,
-        setHairColor,
-        setEyeColor
-      ) => {
-        fetch(`https://www.swapi.tech/api/people/${id}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw Error(response.status);
-            }
-            return response.json();
-          })
-          .then((character) => {
-            setStore({
-              loading: false,
-            });
-            setCharacterName(character.result.properties.name);
-            setBirthYear(character.result.properties.birth_name);
-            setGender(character.result.properties.gender);
-            setHeight(character.result.properties.height);
-            setSkinColor(character.result.properties.skin_color);
-            setHairColor(character.result.properties.hair_color);
-            setEyeColor(character.result.properties.eye_color);
-          })
-          .catch((error) => {
-            console.log("Error fetching single character:", error);
-          });
+      openCharacter: (id) => {
+        const store = getStore();
+        console.log("Open character with ID:", id);
+        const character = store.characters.find((character) => character.id === id);
       },
 
       openPlanet: () => {},
+
+      addToFavorites: () => {
+
+      }
     },
   };
 };

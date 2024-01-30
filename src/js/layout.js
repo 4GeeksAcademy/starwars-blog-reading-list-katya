@@ -25,7 +25,7 @@ const Layout = () => {
           <Route path="/" element={<Characters />} />
           <Route path="/planets" element={<Planets />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/single/:theid" element={<Single />} />
+          <Route path="/single/:id" element={<Single />} />
           <Route path="*" element={<h1>Not found!</h1>} />
         </Routes>
       </BrowserRouter>
