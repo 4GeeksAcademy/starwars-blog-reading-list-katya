@@ -8,7 +8,7 @@ export const Favorites = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div>
+    <div className="mt-5">
       <div className="d-flex justify-content-center">
         <ul className="nav nav-pills mb-3" id="favorite-tab" role="tablist">
           <li className="nav-item" role="presentation">

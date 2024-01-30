@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/starwars.css";
 
@@ -6,96 +7,55 @@ export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div>
-      {store.isInSingleView ? (
-        <div className="d-flex justify-content-center mt-5">
-          <div
-            className="card mb-3 starwars-bg starwars-border-light"
-            style={{ maxWidth: "1200px" }}
+    <div
+      className="card m-3 mb-5 starwars-bg starwars-border-light"
+      style={{ minWidth: "20rem", height: "492px" }}
+    >
+      <img
+        src={store.starsBg}
+        className="card-img-top"
+        alt="..."
+        style={{ height: "250px" }}
+      />
+      <div className="card-body">
+        <h5 className="card-title starwars-text-active mb-3">{props.name}</h5>
+        <div className="card-text red-text-active">
+          <p>
+            Gender: <span className="starwars-text-active">{props.gender}</span>
+          </p>
+          <p>
+            Hair color:{" "}
+            <span className="starwars-text-active">{props.hair_color}</span>
+          </p>
+          <p>
+            Eye color:{" "}
+            <span className="starwars-text-active">{props.eye_color}</span>
+          </p>
+        </div>
+        <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">
+          <Link to={`/single/${props.id}`}>
+            <button
+              type="button"
+              href="#"
+              className="starwars-btn p-2 rounded mx-3"
+              onClick={() => {
+                actions.openCharacter(props.uid);
+                console.log("I am here")
+              }}
+            >
+              Learn more
+            </button>
+          </Link>
+          <button
+            type="button"
+            href="#"
+            className="favorite-btn p-2 rounded mx-3"
+            style={{ width: "40px" }}
           >
-            <div className="row g-0 flex-nowrap">
-              <div className="col-md-4">
-                <img
-                  src={store.starsBg}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
-              </div>
-              <div className="card-body mt-3">
-                  <div className="d-flex justify-content-center">
-                    <h5 className="card-title starwars-text-active">
-                      {props.name}
-                    </h5>
-                    <p className="card-text starwars-text">
-                      {props.description}
-                    </p>
-                    <div className="d-flex flex-row card-text">
-                      <div className="m-2">
-                        <small className="red-text">Birth Year</small>
-                        <p className="red-text-active">
-                          Example{props.birth_year}
-                        </p>
-                      </div>
-                      <div className="m-2">
-                        <small className="red-text">Gender</small>
-                        <p className="red-text-active">{props.gender}</p>
-                      </div>
-                      <div className="m-2">
-                        <small className="red-text">Height</small>
-                        <p className="red-text-active">{props.height}</p>
-                      </div>
-                      <div className="m-2">
-                        <small className="red-text">Skin Color</small>
-                        <p className="red-text-active">{props.skin_color}</p>
-                      </div>
-                      <div className="m-2">
-                        <small className="red-text">Eye Color</small>
-                        <p className="red-text-active">{props.eye_color}</p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
+            <i className="fas fa-heart text-danger"></i>
+          </button>
         </div>
-      ) : (
-        <div
-          className="card m-3 mb-5 starwars-bg starwars-border-light"
-          style={{ minWidth: "20rem", height: "492px" }}
-        >
-          <img
-            src={store.starsBg}
-            className="card-img-top"
-            alt="..."
-            style={{ height: "250px" }}
-          />
-          <div className="card-body">
-            <h5 className="card-title starwars-text-active mb-3">{props.name}</h5>
-            <div className="card-text red-text-active">
-              <p>Gender: <span className="starwars-text-active">{props.gender}</span></p>
-              <p>Hair color: <span className="starwars-text-active">{props.hair_color}</span></p>
-              <p>Eye color: <span className="starwars-text-active">{props.eye_color}</span></p>
-            </div>
-            <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">
-              <button
-                type="button"
-                href="#"
-                className="starwars-btn p-2 rounded mx-3"
-              >
-                Learn more
-              </button>
-              <button
-                type="button"
-                href="#"
-                className="favorite-btn p-2 rounded mx-3"
-                style={{ width: "40px" }}
-              >
-                <i className="fas fa-heart text-danger"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

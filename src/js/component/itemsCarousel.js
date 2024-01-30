@@ -10,8 +10,6 @@ export const ItemsCarousel = () => {
   const groupedCharacters = actions.groupItems(store.characters, 4);
   const groupedPlanets = actions.groupItems(store.planets, 4);
 
-  //console.log(groupedCharacters, groupedPlanets);
-
   return (
     <div id="carouselIndicators" className="carousel slide">
       <div className="carousel-inner">
@@ -26,11 +24,8 @@ export const ItemsCarousel = () => {
                     <CharacterCard
                       key={index}
                       name={character.name}
-                      id={character.uid}
-                      birth_year={character.birth_year}
+                      
                       gender={character.gender}
-                      height={character.height}
-                      skin_color={character.skin_color}
                       hair_color={character.hair_color}
                       eye_color={character.eye_color}
                     />
@@ -60,7 +55,6 @@ export const ItemsCarousel = () => {
                 </div>
               </div>
             ))}
-        {}
       </div>
       <button
         className="carousel-control-prev position-absolute top-50 start-0 translate-middle"
