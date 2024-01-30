@@ -5,7 +5,6 @@ import { Characters } from "./views/characters";
 import { SingleCharacter } from "./views/singleCharacter";
 import { Planets } from "./views/planets";
 import { SinglePlanet } from "./views/singlePlanet";
-import { Favorites } from "./views/favorites";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -24,7 +23,6 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Characters />} />
           <Route path="/planets" element={<Planets />} />
-          <Route path="/favorites" element={<Favorites />} />
           <Route path="/character/:id" element={<SingleCharacter />} />
           <Route path="/planet/:id" element={<SinglePlanet />} />
           <Route path="*" element={<h1>Not found!</h1>} />

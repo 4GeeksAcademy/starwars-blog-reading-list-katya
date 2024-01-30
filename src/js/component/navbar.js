@@ -46,8 +46,8 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/favorites"} className="nav-link starwars-text">
-                Favorites
+              <Link to={"/vehicles"} className="nav-link starwars-text">
+                Vehicles
               </Link>
             </li>
           </ul>
@@ -55,27 +55,52 @@ export const Navbar = () => {
         <div className="btn-group dropstart me-5">
           <button
             type="button"
-            className="starwars-btn dropdown-toggle p-2 rounded"
+            className="starwars-btn dropdown-toggle p-2 rounded d-flex align-items-center"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            My favorites (<strong style={{ fontSize: "14px" }}>2</strong>)
+            My favorites <span className="badge text-bg-warning ms-1">4</span>
           </button>
           <ul className="dropdown-menu bg-dark bg-gradient p-0 starwars-border">
             <ul className="list-group border-0">
               <p className="m-1 p-2 fs-6 starwars-text-active">Characters</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <a className="dropdown-item starwars-text fw-lighter" href="#">
-                  Example of a character
-                </a>
+                <div className="d-flex flex-row align-items-center">
+                  {/*favorites.map*/}
+                  <Link
+                    /*to={`character/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
+                  >
+                    Example of a character
+                  </Link>
+                  <i className="fas fa-trash starwars-text-active me-2"></i>
+                </div>
               </li>
             </ul>
             <ul className="list-group border-0">
               <p className="m-1 p-2 fs-6 starwars-text-active">Planets</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <a className="dropdown-item starwars-text fw-lighter" href="#">
-                  Example of a planets
-                </a>
+                <div className="d-flex flex-row align-items-center">
+                  <Link
+                    /*to={`planet/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
+                  >
+                    Example of a planet
+                  </Link>
+                  <i className="fas fa-trash starwars-text-active me-2"></i>
+                </div>
+              </li>
+            </ul>
+            <ul className="list-group border-0">
+              <p className="m-1 p-2 fs-6 starwars-text-active">Vehicles</p>
+              <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
+                <div className="d-flex flex-row align-items-center">
+                  {/*favorites.map*/}
+                  <Link
+                    /*to={`vehicles/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
+                  >
+                    Example of an vehicle
+                  </Link>
+                  <i className="fas fa-trash starwars-text-active me-2"></i>
+                </div>
               </li>
             </ul>
           </ul>

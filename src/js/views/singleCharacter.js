@@ -21,7 +21,7 @@ export const SingleCharacter = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [store.characters, id]);
+  }, [store.characters]);
 
   return (
     <div>

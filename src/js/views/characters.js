@@ -7,9 +7,9 @@ export const Characters = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.loadSomeData();
-    if (store.isInPlanetsView) {
-      actions.toggleViews();
+    
+    if (store.planetView) {
+      actions.togglePlanetView();
     }
   }, []);
 

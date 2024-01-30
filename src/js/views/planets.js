@@ -7,8 +7,9 @@ export const Planets = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    if (!store.isInPlanetsView) {
-      actions.toggleViews()
+    if( !store.planetView) {
+      actions.togglePlanetView();
+      
     }
   },[])
 

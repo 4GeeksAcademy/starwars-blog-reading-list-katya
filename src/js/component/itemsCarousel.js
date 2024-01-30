@@ -13,7 +13,7 @@ export const ItemsCarousel = () => {
   return (
     <div id="carouselIndicators" className="carousel slide">
       <div className="carousel-inner">
-        {!store.isInPlanetsView
+        {!store.planetView
           ? groupedCharacters.map((group, index) => (
               <div
                 key={index}

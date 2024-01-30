@@ -21,7 +21,7 @@ export const SinglePlanet = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [store.planets, id]);
+  }, [store.planets]);
 
   return (
     <div>

@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       favoritePlanets: [],
       favoriteCharacters: [],
       loading: true,
-      isInPlanetsView: false,
+      planetView: false,
+      vehicleView: false,
       starsBg:
         "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
     },
@@ -97,9 +98,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ loading: false });
       },
 
-      toggleViews: () => {
+      togglePlanetView: () => {
         const store = getStore();
-        setStore({ isInPlanetsView: !store.isInPlanetsView });
+        setStore({ planetView: !store.planetView });
+      },
+
+      toggleVehicleView: () => {
+        const store = getStore();
+        setStore({ vehicleView: !store.vehicleView });
       },
 
       groupItems: (itemsList, numberToGroup) => {
