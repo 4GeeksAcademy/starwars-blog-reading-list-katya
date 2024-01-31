@@ -12,7 +12,7 @@ export const VehicleCard = (props) => {
         style={{ width: "20rem", height: "462px" }}
       >
         <img
-          src={store.starsBg}
+          src={`https://starwars-visualguide.com/assets/img/vehicles/${props.uid}.jpg`}
           className="card-img-top"
           alt="..."
           style={{ height: "250px" }}

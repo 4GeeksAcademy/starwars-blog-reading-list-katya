@@ -31,6 +31,7 @@ export const ItemsCarousel = () => {
                     gender={character.gender}
                     hair_color={character.hair_color}
                     eye_color={character.eye_color}
+                    uid = {character.uid}
                   />
                 ))}
               </div>
@@ -51,6 +52,7 @@ export const ItemsCarousel = () => {
                     id={planet.id}
                     population={planet.population}
                     terrain={planet.terrain}
+                    uid = {planet.uid}
                   />
                 ))}
               </div>
@@ -71,6 +73,7 @@ export const ItemsCarousel = () => {
                     id={vehicle.id}
                     model={vehicle.model}
                     vehicle_class={vehicle.vehicle_class}
+                    uid={vehicle.uid}
                   />
                 ))}
               </div>

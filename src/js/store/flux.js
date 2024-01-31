@@ -150,23 +150,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         return groupedItems;
       },
 
-      openCharacter: (id, setCharacterDetails) => {
-        const store = getStore();
-        const character = store.characters.find(
-          (character) => character.id === id
-        );
-        setCharacterDetails({
-          name: character.name,
-          description: character.description,
-          birthYear: character.birth_year,
-          gender: character.gender,
-          height: character.height,
-          skinColor: character.skin_color,
-          eyeColor: character.eye_color,
-        });
-        setStore({ loading: false });
-      },
-
       openItem: (id, setDetails, itemType, itemPropertyMap) => {
         const store = getStore();
         const item = store[itemType + 's'].find((item) => item.id === id);
