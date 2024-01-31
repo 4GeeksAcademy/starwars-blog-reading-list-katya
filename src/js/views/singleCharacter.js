@@ -17,7 +17,15 @@ export const SingleCharacter = () => {
 
   useEffect(() => {
     if (store.characters.length > 0) {
-      actions.openCharacter(id, setCharacterDetails);
+      actions.openItem(id, setCharacterDetails, "character", {
+        name: "name",
+        description: "description",
+        birthYear: "birth_year",
+        gender: "gender",
+        height: "height",
+        skinColor: "skin_color",
+        eyeColor: "eye_color",
+      });
     } else {
       actions.loadSomeData();
     }

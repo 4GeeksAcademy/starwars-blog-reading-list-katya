@@ -36,7 +36,7 @@ export const VehicleCard = (props) => {
                 href="#"
                 className="starwars-btn p-2 rounded mx-3"
                 onClick={() => {
-                  actions.openVehicle(props.id);
+                  actions.openItem(props.id);
                 }}
               >
                 Learn more

@@ -3,28 +3,36 @@ import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const SingleVehicle = () => {
-    const { store, actions } = useContext(Context);
-    const { id } = useParams();
-    const [vehicleDetails, setVehicleDetails] = useState({
-        name: "",
-        description: "",
-        model: "",
-        vehicleClass: "",
-        manufacturer: "",
-        length: "",
-        passengers: ""
-    });
+  const { store, actions } = useContext(Context);
+  const { id } = useParams();
+  const [vehicleDetails, setVehicleDetails] = useState({
+    name: "",
+    description: "",
+    model: "",
+    vehicleClass: "",
+    manufacturer: "",
+    length: "",
+    passengers: "",
+  });
 
-    useEffect(() => {
-        if (store.vehicles.length > 0) {
-            actions.openVehicle(id, setVehicleDetails);
-        } else {
-            actions.loadSomeData();
-        }
-    }, [store.vehicles]);
+  useEffect(() => {
+    if (store.vehicles.length > 0) {
+      actions.openItem(id, setVehicleDetails, "vehicle", {
+        name: "name",
+        description: "description",
+        model: "model",
+        vehicleClass: "vehicle_class",
+        manufacturer: "manufacturer",
+        length: "length",
+        passengers: "passengers",
+      });
+    } else {
+      actions.loadSomeData();
+    }
+  }, [store.vehicles]);
 
-    return (
-        <div>
+  return (
+    <div>
       {store.loading ? (
         <p className="starwars-text">Loading...</p>
       ) : (
@@ -44,7 +52,7 @@ export const SingleVehicle = () => {
               <div className="card-body mt-3">
                 <div className="d-flex justify-content-center flex-column">
                   <h2 className="card-title starwars-text-active">
-                    {vehicleDetails.name} 
+                    {vehicleDetails.name}
                   </h2>
                   <p className="card-text starwars-text me-2">
                     {vehicleDetails.description} Lorem ipsum dolor sit amet
@@ -85,9 +93,7 @@ export const SingleVehicle = () => {
                     </div>
                     <div className="m-2">
                       <small className="red-text">Length</small>
-                      <p className="red-text-active">
-                        {vehicleDetails.length}
-                      </p>
+                      <p className="red-text-active">{vehicleDetails.length}</p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Passengers</small>
@@ -103,5 +109,5 @@ export const SingleVehicle = () => {
         </div>
       )}
     </div>
-    )
-}
+  );
+};

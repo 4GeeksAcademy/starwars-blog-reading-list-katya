@@ -167,34 +167,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ loading: false });
       },
 
-      openPlanet: (id, setPlanetDetails) => {
+      openItem: (id, setDetails, itemType, itemPropertyMap) => {
         const store = getStore();
-        const planet = store.planets.find((planet) => planet.id === id);
-        setPlanetDetails({
-          name: planet.name,
-          description: planet.description,
-          climate: planet.climate,
-          population: planet.population,
-          orbital_period: planet.orbital_period,
-          rotation_period: planet.rotation_period,
-          diameter: planet.diameter,
-        });
-        setStore({ loading: false });
-      },
+        const item = store[itemType + 's'].find((item) => item.id === id);
 
-      openVehicle: (id, setVehicleDetails) => {
-        const store = getStore();
-        const vehicle = store.vehicles.find((vehicle) => vehicle.id === id);
-        setVehicleDetails({
-          name: vehicle.name,
-          description: vehicle.description,
-          model: vehicle.model,
-          vehicleClass: vehicle.vehicle_class,
-          manufacturer: vehicle.manufacturer,
-          length: vehicle.length,
-          passengers: vehicle.passengers,
-        });
+        const details = {};
+        for (const [key, value] of Object.entries(itemPropertyMap)) {
+          details[key] = item[value];
+        }
+      
+        setDetails(details);
         setStore({ loading: false });
+
       },
 
       addToFavorites: () => {},

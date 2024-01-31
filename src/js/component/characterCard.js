@@ -39,7 +39,7 @@ export const CharacterCard = (props) => {
               href="#"
               className="starwars-btn p-2 rounded mx-3"
               onClick={() => {
-                actions.openCharacter(props.id);
+                actions.openItem(props.id);
               }}
             >
               Learn more

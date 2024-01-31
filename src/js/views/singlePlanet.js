@@ -17,7 +17,15 @@ export const SinglePlanet = () => {
 
   useEffect(() => {
     if (store.planets.length > 0) {
-      actions.openPlanet(id, setPlanetDetails);
+      actions.openItem(id, setPlanetDetails, "planet", {
+        name: "name",
+        description: "description",
+        climate: "climate",
+        population: "population",
+        orbitalPeriod: "orbital_period",
+        rotationPeriod: "rotation_period",
+        diameter: "diameter",
+      });
     } else {
       actions.loadSomeData();
     }
@@ -44,7 +52,7 @@ export const SinglePlanet = () => {
               <div className="card-body mt-3">
                 <div className="d-flex justify-content-center flex-column">
                   <h2 className="card-title starwars-text-active">
-                    {planetDetails.name} 
+                    {planetDetails.name}
                   </h2>
                   <p className="card-text starwars-text me-2">
                     {planetDetails.description} Lorem ipsum dolor sit amet
