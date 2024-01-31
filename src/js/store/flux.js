@@ -10,8 +10,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       loading: true,
       planetView: false,
       vehicleView: false,
-      starsBg:
-        "https://i.etsystatic.com/19757570/r/il/67af62/3423023845/il_570xN.3423023845_6v7h.jpg",
     },
     actions: {
       loadSomeData: async () => {
@@ -130,6 +128,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
 
         setStore({ loading: false });
+      },
+
+      fetch: () => {
+        let apiUrls = ['planets', 'people', 'vehicles'];
+        apiUrls.forEach((url) => {
+          
+        })
       },
 
       togglePlanetView: () => {

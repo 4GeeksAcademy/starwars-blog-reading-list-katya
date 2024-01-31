@@ -137,7 +137,7 @@ export const Navbar = () => {
                       key={index}
                     >
                       <Link
-                        to={`planet/${vehicle.id}`}
+                        to={`vehicle/${vehicle.id}`}
                         className="dropdown-item starwars-text fw-lighter"
                       >
                         {vehicle.name}
