@@ -7,7 +7,9 @@ export const Characters = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    
+    if (store.vehicleView) {
+      actions.toggleVehicleView();
+    }
     if (store.planetView) {
       actions.togglePlanetView();
     }

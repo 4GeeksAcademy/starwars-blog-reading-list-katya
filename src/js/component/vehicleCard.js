@@ -25,8 +25,8 @@ export const VehicleCard = (props) => {
               <span className="starwars-text-active">{props.model}</span>
             </p>
             <p className="text-wrap">
-              Manufacturer:{" "}
-              <span className="starwars-text-active">{props.manufacturer}</span>
+              Vehicle class:{" "}
+              <span className="starwars-text-active">{props.vehicle_class}</span>
             </p>
           </div>
           <div className="position-absolute bottom-0 mb-3 start-50 translate-middle-x w-100">

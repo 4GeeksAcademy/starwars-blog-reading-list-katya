@@ -3,8 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       planets: [],
       characters: [],
+      vehicles: [],
       favoritePlanets: [],
       favoriteCharacters: [],
+      favoriteVehicles: [],
       loading: true,
       planetView: false,
       vehicleView: false,
@@ -41,7 +43,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 id: planetDetails.result._id,
                 uid: planetDetails.result.uid,
               };
-
             } catch (error) {
               console.log("Error fetching planet details:", error);
             }
@@ -80,16 +81,49 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
 
+          // Vehicles
+          const vehiclesResponse = await fetch(
+            "https://www.swapi.tech/api/vehicles/"
+          );
+          if (!vehiclesResponse.ok) {
+            throw Error(vehiclesResponse.status);
+          }
+          const vehicles = await vehiclesResponse.json();
+
+          // Details for each vehicle
+          const vehicleDetailsPromises = vehicles.results.map(
+            async (vehicle) => {
+              try {
+                const vehicleResponse = await fetch(
+                  `https://www.swapi.tech/api/vehicles/${vehicle.uid}`
+                );
+                if (!vehicleResponse.ok) {
+                  throw Error(vehicleResponse.status);
+                }
+                const vehicleDetails = await vehicleResponse.json();
+
+                return {
+                  ...vehicleDetails.result.properties,
+                  description: vehicleDetails.result.description,
+                  id: vehicleDetails.result._id,
+                  uid: vehicleDetails.result.uid,
+                };
+              } catch (error) {
+                console.log("Error fetching vehicle details:", error);
+              }
+            }
+          );
+
           const charactersWithDetails = await Promise.all(
             characterDetailsPromises
           );
-          const planetsWithDetails = await Promise.all(
-            planetDetailsPromises
-          );
+          const planetsWithDetails = await Promise.all(planetDetailsPromises);
+          const vehiclesWithDetails = await Promise.all(vehicleDetailsPromises);
 
           setStore({
             characters: store.characters.concat(charactersWithDetails),
-            planets: store.planets.concat(planetsWithDetails)
+            planets: store.planets.concat(planetsWithDetails),
+            vehicles: store.vehicles.concat(vehiclesWithDetails),
           });
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -116,10 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         return groupedItems;
       },
 
-      openCharacter: (
-        id,
-        setCharacterDetails
-      ) => {
+      openCharacter: (id, setCharacterDetails) => {
         const store = getStore();
         const character = store.characters.find(
           (character) => character.id === id
@@ -133,14 +164,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           skinColor: character.skin_color,
           eyeColor: character.eye_color,
         });
-        setStore({loading: false})
+        setStore({ loading: false });
       },
 
       openPlanet: (id, setPlanetDetails) => {
         const store = getStore();
-        const planet = store.planets.find(
-          (planet) => planet.id === id
-        );
+        const planet = store.planets.find((planet) => planet.id === id);
         setPlanetDetails({
           name: planet.name,
           description: planet.description,
@@ -148,9 +177,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           population: planet.population,
           orbital_period: planet.orbital_period,
           rotation_period: planet.rotation_period,
-          diameter: planet.diameter
-        })
-        setStore({loading: false})
+          diameter: planet.diameter,
+        });
+        setStore({ loading: false });
+      },
+
+      openVehicle: (id, setVehicleDetails) => {
+        const store = getStore();
+        const vehicle = store.vehicles.find((vehicle) => vehicle.id === id);
+        setVehicleDetails({
+          name: vehicle.name,
+          description: vehicle.description,
+          model: vehicle.model,
+          vehicleClass: vehicle.vehicle_class,
+          manufacturer: vehicle.manufacturer,
+          length: vehicle.length,
+          passengers: vehicle.passengers,
+        });
+        setStore({ loading: false });
       },
 
       addToFavorites: () => {},
