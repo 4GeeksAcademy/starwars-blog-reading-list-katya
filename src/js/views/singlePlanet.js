@@ -10,8 +10,8 @@ export const SinglePlanet = () => {
     description: "",
     climate: "",
     population: "",
-    orbital_period: "",
-    rotation_period: "",
+    orbitalPeriod: "",
+    rotationPeriod: "",
     diameter: "",
   });
 
@@ -88,13 +88,13 @@ export const SinglePlanet = () => {
                     <div className="m-2">
                       <small className="red-text">Orbital Period</small>
                       <p className="red-text-active">
-                        {planetDetails.orbital_period}
+                        {planetDetails.orbitalPeriod}
                       </p>
                     </div>
                     <div className="m-2">
                       <small className="red-text">Rotation Period</small>
                       <p className="red-text-active">
-                        {planetDetails.rotation_period}
+                        {planetDetails.rotationPeriod}
                       </p>
                     </div>
                     <div className="m-2">
