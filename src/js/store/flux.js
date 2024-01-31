@@ -152,19 +152,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       openItem: (id, setDetails, itemType, itemPropertyMap) => {
         const store = getStore();
-        const item = store[itemType + 's'].find((item) => item.id === id);
+        const item = store[itemType + "s"].find((item) => item.id === id);
 
         const details = {};
         for (const [key, value] of Object.entries(itemPropertyMap)) {
           details[key] = item[value];
         }
-      
+
         setDetails(details);
         setStore({ loading: false });
-
       },
 
-      addToFavorites: () => {},
+      addToFavorites: (id, itemTypes) => {
+        const store = getStore();
+        const item = store[itemTypes.toLowerCase()].find(
+          (item) => item.id === id
+        );
+
+        if (store["favorite" + itemTypes].includes(item)) {
+          alert(`${item.name} is already in your favorites`);
+        } else {
+          setStore({
+            ["favorite" + itemTypes]:
+              store["favorite" + itemTypes].concat(item),
+          });
+        }
+        console.log("Favorite " + itemTypes, store["favorite" + itemTypes]);
+      },
+
+      removeFromFavorites: () => {},
     },
   };
 };

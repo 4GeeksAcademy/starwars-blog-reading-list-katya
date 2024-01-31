@@ -47,6 +47,9 @@ export const PlanetCard = (props) => {
               href="#"
               className="favorite-btn p-2 rounded mx-3"
               style={{ width: "40px" }}
+              onClick={() => {
+                actions.addToFavorites(props.id, "Planets")
+              }}
             >
               <i className="fas fa-heart text-danger"></i>
             </button>

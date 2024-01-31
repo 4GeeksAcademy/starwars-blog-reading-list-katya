@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/starwars.css";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
+  const numberOfFavorites =
+    store.favoritePlanets.length +
+    store.favoriteCharacters.length +
+    store.favoriteVehicles.length;
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-dark bg-gradient border-bottom border-body"
@@ -59,48 +67,85 @@ export const Navbar = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            My favorites <span className="badge text-bg-warning ms-1">4</span>
+            My favorites{" "}
+            <span className="badge text-bg-warning ms-1">
+              {numberOfFavorites}
+            </span>
           </button>
           <ul className="dropdown-menu bg-dark bg-gradient p-0 starwars-border">
             <ul className="list-group border-0">
               <p className="m-1 p-2 fs-6 starwars-text-active">Characters</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <div className="d-flex flex-row align-items-center">
-                  {/*favorites.map*/}
-                  <Link
-                    /*to={`character/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
-                  >
-                    Example of a character
-                  </Link>
-                  <i className="fas fa-trash starwars-text-active me-2"></i>
-                </div>
+                {store.favoriteCharacters.length == 0 ? (
+                  <p className="dropdown-item starwars-text fw-lighter">
+                    Add characters
+                  </p>
+                ) : (
+                  store.favoriteCharacters.map((character, index) => (
+                    <div
+                      className="d-flex flex-row align-items-center"
+                      key={index}
+                    >
+                      <Link
+                        to={`character/${character.id}`}
+                        className="dropdown-item starwars-text fw-lighter"
+                      >
+                        {character.name}
+                      </Link>
+                      <i className="fas fa-trash starwars-text-active me-2"></i>
+                    </div>
+                  ))
+                )}
               </li>
             </ul>
             <ul className="list-group border-0">
               <p className="m-1 p-2 fs-6 starwars-text-active">Planets</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <div className="d-flex flex-row align-items-center">
-                  <Link
-                    /*to={`planet/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
-                  >
-                    Example of a planet
-                  </Link>
-                  <i className="fas fa-trash starwars-text-active me-2"></i>
-                </div>
+                {store.favoritePlanets.length == 0 ? (
+                  <p className="dropdown-item starwars-text fw-lighter">
+                    Add planets
+                  </p>
+                ) : (
+                  store.favoritePlanets.map((planet, index) => (
+                    <div
+                      className="d-flex flex-row align-items-center"
+                      key={index}
+                    >
+                      <Link
+                        to={`planet/${planet.id}`}
+                        className="dropdown-item starwars-text fw-lighter"
+                      >
+                        {planet.name}
+                      </Link>
+                      <i className="fas fa-trash starwars-text-active me-2"></i>
+                    </div>
+                  ))
+                )}
               </li>
             </ul>
             <ul className="list-group border-0">
               <p className="m-1 p-2 fs-6 starwars-text-active">Vehicles</p>
               <li className="list-group-item bg-dark bg-gradient p-0 rounded-0">
-                <div className="d-flex flex-row align-items-center">
-                  {/*favorites.map*/}
-                  <Link
-                    /*to={`vehicles/${id}`}*/ className="dropdown-item starwars-text fw-lighter"
-                  >
-                    Example of an vehicle
-                  </Link>
-                  <i className="fas fa-trash starwars-text-active me-2"></i>
-                </div>
+                {store.favoriteVehicles.length == 0 ? (
+                  <p className="dropdown-item starwars-text fw-lighter">
+                    Add vehicles
+                  </p>
+                ) : (
+                  store.favoriteVehicles.map((vehicle, index) => (
+                    <div
+                      className="d-flex flex-row align-items-center"
+                      key={index}
+                    >
+                      <Link
+                        to={`planet/${vehicle.id}`}
+                        className="dropdown-item starwars-text fw-lighter"
+                      >
+                        {vehicle.name}
+                      </Link>
+                      <i className="fas fa-trash starwars-text-active me-2"></i>
+                    </div>
+                  ))
+                )}
               </li>
             </ul>
           </ul>

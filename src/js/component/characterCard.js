@@ -50,6 +50,9 @@ export const CharacterCard = (props) => {
             href="#"
             className="favorite-btn p-2 rounded mx-3"
             style={{ width: "40px" }}
+            onClick={() => {
+              actions.addToFavorites(props.id, "Characters")
+            }}
           >
             <i className="fas fa-heart text-danger"></i>
           </button>
