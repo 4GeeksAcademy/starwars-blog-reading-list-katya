@@ -20,7 +20,7 @@ export const Navbar = () => {
     <nav
       className="navbar navbar-expand-lg bg-black bg-gradient border-body"
       data-bs-theme="dark"
-      style={{height: "70px"}}
+      style={{ height: "70px" }}
     >
       <div className="container-fluid">
         <Link to={"/"}>
@@ -81,6 +81,17 @@ export const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+          <form className="d-flex" role="search">
+            <input
+              className="form-control starwars-border me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button className="starwars-btn rounded" type="submit">
+              Search
+            </button>
+          </form>
         </div>
         <div className="btn-group dropstart me-5">
           <button
