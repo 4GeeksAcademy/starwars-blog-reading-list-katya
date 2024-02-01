@@ -12,116 +12,58 @@ const getState = ({ getStore, getActions, setStore }) => {
       vehicleView: false,
     },
     actions: {
-      loadSomeData: async () => {
+      loadSomeData: () => {
+        const actions = getActions();
+        try {
+          actions.fetch("characters");
+          actions.fetch("planets");
+          actions.fetch("vehicles");
+        } catch (error) {
+          console.error("Error loading data:", error);
+        }
+      },
+
+      fetch: async (itemTypes) => {
         const store = getStore();
+        let url = "";
+
+        if (itemTypes === "characters") {
+          url = "https://www.swapi.tech/api/people/";
+        } else {
+          url = `https://www.swapi.tech/api/${itemTypes}/`
+        };
 
         try {
-          // Planets
-          const planetsResponse = await fetch(
-            "https://www.swapi.tech/api/planets/"
-          );
-          if (!planetsResponse.ok) {
-            throw Error(planetsResponse.status);
+          const itemsResponse = await fetch(url);
+          if (!itemsResponse.ok) {
+            throw Error(itemsResponse.status);
           }
-          const planets = await planetsResponse.json();
+          const items = await itemsResponse.json();
 
-          // Details for each planet
-          const planetDetailsPromises = planets.results.map(async (planet) => {
+          // Details for each item
+          const itemDetailsPromises = items.results.map(async (item) => {
             try {
-              const planetResponse = await fetch(
-                `https://www.swapi.tech/api/planets/${planet.uid}`
-              );
-              if (!planetResponse.ok) {
-                throw Error(planetResponse.status);
+              const itemResponse = await fetch(item.url);
+              if (!itemResponse.ok) {
+                throw Error(itemResponse.status);
               }
-              const planetDetails = await planetResponse.json();
+              const itemDetails = await itemResponse.json();
+
               return {
-                ...planetDetails.result.properties,
-                description: planetDetails.result.description,
-                id: planetDetails.result._id,
-                uid: planetDetails.result.uid,
+                ...itemDetails.result.properties,
+                description: itemDetails.result.description,
+                id: itemDetails.result._id,
+                uid: itemDetails.result.uid,
               };
             } catch (error) {
-              console.log("Error fetching planet details:", error);
+              console.log("Error fetching details:", error);
             }
           });
 
-          // Characters
-          const charactersResponse = await fetch(
-            "https://www.swapi.tech/api/people/"
-          );
-          if (!charactersResponse.ok) {
-            throw Error(charactersResponse.status);
-          }
-          const characters = await charactersResponse.json();
-
-          // Details for each character
-          const characterDetailsPromises = characters.results.map(
-            async (character) => {
-              try {
-                const characterResponse = await fetch(
-                  `https://www.swapi.tech/api/people/${character.uid}`
-                );
-                if (!characterResponse.ok) {
-                  throw Error(characterResponse.status);
-                }
-                const characterDetails = await characterResponse.json();
-
-                return {
-                  ...characterDetails.result.properties,
-                  description: characterDetails.result.description,
-                  id: characterDetails.result._id,
-                  uid: characterDetails.result.uid,
-                };
-              } catch (error) {
-                console.log("Error fetching character details:", error);
-              }
-            }
-          );
-
-          // Vehicles
-          const vehiclesResponse = await fetch(
-            "https://www.swapi.tech/api/vehicles/"
-          );
-          if (!vehiclesResponse.ok) {
-            throw Error(vehiclesResponse.status);
-          }
-          const vehicles = await vehiclesResponse.json();
-
-          // Details for each vehicle
-          const vehicleDetailsPromises = vehicles.results.map(
-            async (vehicle) => {
-              try {
-                const vehicleResponse = await fetch(
-                  `https://www.swapi.tech/api/vehicles/${vehicle.uid}`
-                );
-                if (!vehicleResponse.ok) {
-                  throw Error(vehicleResponse.status);
-                }
-                const vehicleDetails = await vehicleResponse.json();
-
-                return {
-                  ...vehicleDetails.result.properties,
-                  description: vehicleDetails.result.description,
-                  id: vehicleDetails.result._id,
-                  uid: vehicleDetails.result.uid,
-                };
-              } catch (error) {
-                console.log("Error fetching vehicle details:", error);
-              }
-            }
-          );
-
-          const charactersWithDetails = await Promise.all(
-            characterDetailsPromises
-          );
-          const planetsWithDetails = await Promise.all(planetDetailsPromises);
-          const vehiclesWithDetails = await Promise.all(vehicleDetailsPromises);
+          const itemsWithDetails = await Promise.all(itemDetailsPromises);
 
           setStore({
-            characters: store.characters.concat(charactersWithDetails),
-            planets: store.planets.concat(planetsWithDetails),
-            vehicles: store.vehicles.concat(vehiclesWithDetails),
+            [itemTypes]: store[itemTypes].concat(itemsWithDetails),
           });
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -129,13 +71,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ loading: false });
       },
-
-      /*fetch: () => {
-        let apiUrls = ['planets', 'people', 'vehicles'];
-        apiUrls.forEach((url) => {
-          
-        })
-      },*/
 
       togglePlanetView: () => {
         const store = getStore();
@@ -190,7 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const updatedFavorites = store["favorite" + itemTypes].filter(
           (item) => item.id != id
         );
-        setStore({["favorite" + itemTypes]: updatedFavorites})
+        setStore({ ["favorite" + itemTypes]: updatedFavorites });
       },
     },
   };

@@ -39,7 +39,16 @@ export const CharacterCard = (props) => {
               href="#"
               className="starwars-btn p-2 rounded mx-3"
               onClick={() => {
-                actions.openItem(props.id);
+                actions.openItem(props.id, setCharacterDetails, "character", {
+                  name: "name",
+                  description: "description",
+                  birthYear: "birth_year",
+                  gender: "gender",
+                  height: "height",
+                  skinColor: "skin_color",
+                  eyeColor: "eye_color",
+                  uid: "uid"
+                });
               }}
             >
               Learn more

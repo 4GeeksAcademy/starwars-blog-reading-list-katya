@@ -18,8 +18,9 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-dark bg-gradient border-bottom border-body"
+      className="navbar navbar-expand-lg bg-black bg-gradient border-body"
       data-bs-theme="dark"
+      style={{height: "70px"}}
     >
       <div className="container-fluid">
         <Link to={"/"}>
@@ -110,7 +111,6 @@ export const Navbar = () => {
                       <Link
                         to={`character/${character.id}`}
                         className="dropdown-item starwars-text fw-lighter"
-                        onClick={() => {setIsClicked(true)}}
                       >
                         {character.name}
                       </Link>
@@ -149,7 +149,13 @@ export const Navbar = () => {
                       >
                         {planet.name}
                       </Link>
-                      <i className="fas fa-trash starwars-text-active me-2"></i>
+                      <i
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          actions.removeFromFavorites(planet.id, "Planets");
+                        }}
+                        className="fas fa-trash starwars-text-active me-2"
+                      ></i>
                     </div>
                   ))
                 )}
@@ -174,7 +180,13 @@ export const Navbar = () => {
                       >
                         {vehicle.name}
                       </Link>
-                      <i className="fas fa-trash starwars-text-active me-2"></i>
+                      <i
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          actions.removeFromFavorites(vehicle.id, "Vehicles");
+                        }}
+                        className="fas fa-trash starwars-text-active me-2"
+                      ></i>
                     </div>
                   ))
                 )}

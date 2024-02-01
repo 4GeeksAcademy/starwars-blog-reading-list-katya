@@ -32,6 +32,10 @@ export const SinglePlanet = () => {
     }
   }, [store.planets]);
 
+  function handleImageError(e) {
+    e.target.src = "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131019121937"
+  };
+
   return (
     <div>
       {store.loading ? (
@@ -48,6 +52,7 @@ export const SinglePlanet = () => {
                   src={`https://starwars-visualguide.com/assets/img/planets/${planetDetails.uid}.jpg`}
                   className="img-fluid rounded-start"
                   alt="..."
+                  onError={handleImageError}
                 />
               </div>
               <div className="card-body mt-3">

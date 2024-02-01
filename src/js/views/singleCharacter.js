@@ -30,7 +30,7 @@ export const SingleCharacter = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [id, store.characters, store.favoriteCharacters]);
+  }, [store.characters, store.favoriteCharacters]);
 
   return (
     <div>
