@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/starwars.css";
 
 export const VehicleCard = (props) => {
     const { store, actions } = useContext(Context);
+    const [isClicked, setIsClicked] = useState(false);
 
     return (
         <div
@@ -36,7 +37,16 @@ export const VehicleCard = (props) => {
                 href="#"
                 className="starwars-btn p-2 rounded mx-3"
                 onClick={() => {
-                  actions.openItem(props.id);
+                  actions.openItem(props.id, setVehicleDetails, "vehicle", {
+                    name: "name",
+                    description: "description",
+                    model: "model",
+                    vehicleClass: "vehicle_class",
+                    manufacturer: "manufacturer",
+                    length: "length",
+                    passengers: "passengers",
+                    uid: "uid"
+                  })
                 }}
               >
                 Learn more
@@ -48,10 +58,15 @@ export const VehicleCard = (props) => {
               className="favorite-btn p-2 rounded mx-3"
               style={{ width: "40px" }}
               onClick={() => {
-                actions.addToFavorites(props.id, "Vehicles")
+                actions.addToFavorites(props.id, "Vehicles");
+                setIsClicked(true);
               }}
             >
+              {isClicked ? (
               <i className="fas fa-heart text-danger"></i>
+            ) : (
+              <i className="far fa-heart text-danger"></i>
+            )}
             </button>
           </div>
         </div>

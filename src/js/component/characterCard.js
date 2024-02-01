@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/starwars.css";
 
 export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
+  const [isClicked, setIsClicked] = useState(false);
 
+ 
   return (
     <div
       className="card m-3 mb-5 starwars-bg starwars-border-light"
@@ -47,7 +49,7 @@ export const CharacterCard = (props) => {
                   height: "height",
                   skinColor: "skin_color",
                   eyeColor: "eye_color",
-                  uid: "uid"
+                  uid: "uid",
                 });
               }}
             >
@@ -60,10 +62,16 @@ export const CharacterCard = (props) => {
             className="favorite-btn p-2 rounded mx-3"
             style={{ width: "40px" }}
             onClick={() => {
-              actions.addToFavorites(props.id, "Characters")
+              actions.addToFavorites(props.id, "Characters");
+              setIsClicked(true);
             }}
           >
-            <i className="fas fa-heart text-danger"></i>
+            {" "}
+            {isClicked ? (
+              <i className="fas fa-heart text-danger"></i>
+            ) : (
+              <i className="far fa-heart text-danger"></i>
+            )}
           </button>
         </div>
       </div>

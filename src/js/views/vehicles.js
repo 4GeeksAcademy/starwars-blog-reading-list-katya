@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { ItemsCarousel } from "../component/itemsCarousel";
-import "../../styles/home.css";
 
 export const Vehicles = () => {
   const { store, actions } = useContext(Context);

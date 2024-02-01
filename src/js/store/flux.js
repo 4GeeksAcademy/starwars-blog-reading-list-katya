@@ -120,6 +120,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Favorite " + itemTypes, store["favorite" + itemTypes]);
       },
 
+      checkFavorites: (id, itemTypes) => {
+        const store = getStore();
+        const item = store[itemTypes.toLowerCase()].find(
+          (item) => item.id === id
+        );
+        if (store["favorite" + itemTypes].includes(item)) {
+          return true
+        }
+      },
+
       removeFromFavorites: (id, itemTypes) => {
         const store = getStore();
         const updatedFavorites = store["favorite" + itemTypes].filter(

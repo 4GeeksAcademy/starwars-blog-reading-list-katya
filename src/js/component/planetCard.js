@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/starwars.css";
 
 export const PlanetCard = (props) => {
   const { store, actions } = useContext(Context);
+  const [isClicked, setIsClicked] = useState(false);
 
   function handleImageError(e) {
     e.target.src = "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131019121937"
@@ -41,7 +42,16 @@ export const PlanetCard = (props) => {
                 href="#"
                 className="starwars-btn p-2 rounded mx-3"
                 onClick={() => {
-                  actions.openItem(props.id);
+                  actions.openItem(props.id, setPlanetDetails, "planet", {
+                    name: "name",
+                    description: "description",
+                    climate: "climate",
+                    population: "population",
+                    orbitalPeriod: "orbital_period",
+                    rotationPeriod: "rotation_period",
+                    diameter: "diameter",
+                    uid: "uid"
+                  })
                 }}
               >
                 Learn more
@@ -53,10 +63,15 @@ export const PlanetCard = (props) => {
               className="favorite-btn p-2 rounded mx-3"
               style={{ width: "40px" }}
               onClick={() => {
-                actions.addToFavorites(props.id, "Planets")
+                actions.addToFavorites(props.id, "Planets");
+                setIsClicked(true);
               }}
             >
+              {isClicked ? (
               <i className="fas fa-heart text-danger"></i>
+            ) : (
+              <i className="far fa-heart text-danger"></i>
+            )}
             </button>
           </div>
         </div>
