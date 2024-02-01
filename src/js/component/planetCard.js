@@ -6,6 +6,10 @@ import "../../styles/starwars.css";
 export const PlanetCard = (props) => {
   const { store, actions } = useContext(Context);
 
+  function handleImageError(e) {
+    e.target.src = "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131019121937"
+  };
+
   return (
       <div
         className="card m-3 mb-5 starwars-bg starwars-border-light"
@@ -16,6 +20,7 @@ export const PlanetCard = (props) => {
           className="card-img-top"
           alt="..."
           style={{ height: "250px" }}
+          onError={handleImageError}
         />
         <div className="card-body">
           <h5 className="card-title starwars-text-active mb-3">{props.name}</h5>
