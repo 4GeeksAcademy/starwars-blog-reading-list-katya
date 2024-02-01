@@ -1,16 +1,20 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "../../styles/starwars.css";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const { pathname } = useLocation();
+
+  const isActive = (route) => {
+    return pathname === route;
+  };
 
   const numberOfFavorites =
     store.favoritePlanets.length +
     store.favoriteCharacters.length +
     store.favoriteVehicles.length;
-
 
   return (
     <nav
@@ -41,23 +45,39 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <Link
+              <NavLink
                 to={"/"}
-                className="nav-link starwars-text-active"
+                className={`nav-link ${
+                  isActive("/") ? "starwars-text-active" : "starwars-text"
+                }`}
                 aria-current="page"
               >
                 Characters
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to={"/planets"} className="nav-link starwars-text">
+              <NavLink
+                to={"/planets"}
+                className={`nav-link ${
+                  isActive("/planets")
+                    ? "starwars-text-active"
+                    : "starwars-text"
+                }`}
+              >
                 Planets
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to={"/vehicles"} className="nav-link starwars-text">
+              <NavLink
+                to={"/vehicles"}
+                className={`nav-link ${
+                  isActive("/vehicles")
+                    ? "starwars-text-active"
+                    : "starwars-text"
+                }`}
+              >
                 Vehicles
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -90,6 +110,7 @@ export const Navbar = () => {
                       <Link
                         to={`character/${character.id}`}
                         className="dropdown-item starwars-text fw-lighter"
+                        onClick={() => {setIsClicked(true)}}
                       >
                         {character.name}
                       </Link>
@@ -97,7 +118,10 @@ export const Navbar = () => {
                       <i
                         onClick={(e) => {
                           e.stopPropagation();
-                          actions.removeFromFavorites(character.id, "Characters");
+                          actions.removeFromFavorites(
+                            character.id,
+                            "Characters"
+                          );
                         }}
                         className="fas fa-trash starwars-text-active me-2"
                       ></i>

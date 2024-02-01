@@ -30,6 +30,10 @@
   color: #f9d81ba5 !important;
 }
 
+.starwars-highlight {
+  background-color: #f9d81ba5 !important;
+}
+
 .starwars-text-active,
 #carousel-arrow-prev,
 #carousel-arrow-next {
@@ -53,6 +57,5 @@
 }
 
 .carousel-control {
-  
   height: 50px !important;
 }
