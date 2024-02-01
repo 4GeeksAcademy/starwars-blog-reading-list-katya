@@ -130,12 +130,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ loading: false });
       },
 
-      fetch: () => {
+      /*fetch: () => {
         let apiUrls = ['planets', 'people', 'vehicles'];
         apiUrls.forEach((url) => {
           
         })
-      },
+      },*/
 
       togglePlanetView: () => {
         const store = getStore();

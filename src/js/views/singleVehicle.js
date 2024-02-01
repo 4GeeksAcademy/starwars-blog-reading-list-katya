@@ -25,6 +25,7 @@ export const SingleVehicle = () => {
         manufacturer: "manufacturer",
         length: "length",
         passengers: "passengers",
+        uid: "uid"
       });
     } else {
       actions.loadSomeData();
@@ -44,7 +45,7 @@ export const SingleVehicle = () => {
             <div className="row g-0 flex-nowrap">
               <div className="col-md-4 m-4 mt-5">
                 <img
-                  src={``}
+                  src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicleDetails.uid}.jpg`}
                   className="img-fluid rounded-start"
                   alt="..."
                 />
