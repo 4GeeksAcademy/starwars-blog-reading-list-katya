@@ -185,7 +185,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Favorite " + itemTypes, store["favorite" + itemTypes]);
       },
 
-      removeFromFavorites: () => {},
+      removeFromFavorites: (id, itemTypes) => {
+        const store = getStore();
+        const updatedFavorites = store["favorite" + itemTypes].filter(
+          (item) => item.id != id
+        );
+        setStore({["favorite" + itemTypes]: updatedFavorites})
+      },
     },
   };
 };

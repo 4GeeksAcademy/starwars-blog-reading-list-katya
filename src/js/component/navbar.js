@@ -11,6 +11,7 @@ export const Navbar = () => {
     store.favoriteCharacters.length +
     store.favoriteVehicles.length;
 
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-dark bg-gradient border-bottom border-body"
@@ -92,7 +93,14 @@ export const Navbar = () => {
                       >
                         {character.name}
                       </Link>
-                      <i className="fas fa-trash starwars-text-active me-2"></i>
+
+                      <i
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          actions.removeFromFavorites(character.id, "Characters");
+                        }}
+                        className="fas fa-trash starwars-text-active me-2"
+                      ></i>
                     </div>
                   ))
                 )}
