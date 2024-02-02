@@ -5,7 +5,12 @@ import "../../styles/starwars.css";
 
 export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
-  const isFavorite = actions.checkFavorites(props.id, "Characters");
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    setIsFavorite(actions.checkFavorites(props.id, "Characters"));
+    console.log(actions.checkFavorites(props.id, "Characters"))
+  }, [store.favoriteCharacters]);
 
   return (
     <div
@@ -70,7 +75,7 @@ export const CharacterCard = (props) => {
           >
             {" "}
             <i
-              className={`${isFavorite ? "fas" : "far"} fa-heart text-danger`}
+              className={(isFavorite ? "fas" : "far") + " fa-heart text-danger"}
             ></i>
           </button>
         </div>

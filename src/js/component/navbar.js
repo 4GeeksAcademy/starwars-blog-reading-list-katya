@@ -82,7 +82,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-         <SearchBar />
+         {/*<SearchBar />*/}
         </div>
         <div className="btn-group dropstart me-5">
           <button

@@ -72,6 +72,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ loading: false });
       },
 
+      fetchLocalStorageFavorites: () => {
+        setStore({
+          favoritePlanets:
+            JSON.parse(localStorage.getItem("favoritePlanets")) || [],
+          favoriteCharacters:
+            JSON.parse(localStorage.getItem("favoriteCharacters")) || [],
+          favoriteVehicles:
+            JSON.parse(localStorage.getItem("favoriteVehicles")) || [],
+        });
+      },
+
       togglePlanetView: () => {
         const store = getStore();
         setStore({ planetView: !store.planetView });
@@ -108,7 +119,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         const item = store[itemTypes.toLowerCase()].find(
           (item) => item.id === id
         );
-
+        localStorage.setItem(
+          "favorite" + itemTypes,
+          JSON.stringify(store["favorite" + itemTypes].concat(item))
+        );
         setStore({
           ["favorite" + itemTypes]: store["favorite" + itemTypes].concat(item),
         });
@@ -121,15 +135,21 @@ const getState = ({ getStore, getActions, setStore }) => {
         const item = store[itemTypes.toLowerCase()].find(
           (item) => item.id === id
         );
-        if (store["favorite" + itemTypes].includes(item)) {
+        console.log(item, store["favorite" + itemTypes]);
+        if (store["favorite" + itemTypes].some((f) => f.id == item.id)) {
           return true;
         }
+        return false;
       },
 
       removeFromFavorites: (id, itemTypes) => {
         const store = getStore();
         const updatedFavorites = store["favorite" + itemTypes].filter(
           (item) => item.id != id
+        );
+        localStorage.setItem(
+          "favorite" + itemTypes,
+          JSON.stringify(updatedFavorites)
         );
         setStore({ ["favorite" + itemTypes]: updatedFavorites });
       },
