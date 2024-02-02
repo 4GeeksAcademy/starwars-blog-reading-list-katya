@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       characters: [],
       vehicles: [],
       favoritePlanets: [],
-      favoriteCharacters: [],
+      favoriteCharacters:[],
       favoriteVehicles: [],
       loading: true,
       planetView: false,
@@ -30,8 +30,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (itemTypes === "characters") {
           url = "https://www.swapi.tech/api/people/";
         } else {
-          url = `https://www.swapi.tech/api/${itemTypes}/`
-        };
+          url = `https://www.swapi.tech/api/${itemTypes}/`;
+        }
 
         try {
           const itemsResponse = await fetch(url);
@@ -126,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           (item) => item.id === id
         );
         if (store["favorite" + itemTypes].includes(item)) {
-          return true
+          return true;
         }
       },
 

@@ -83,7 +83,7 @@ export const Navbar = () => {
           </ul>
           <form className="d-flex" role="search">
             <input
-              className="form-control starwars-border me-2"
+              className="form-control starwars-border me-2 starwars-text"
               type="search"
               placeholder="Search"
               aria-label="Search"

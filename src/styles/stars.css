@@ -1,16 +1,17 @@
 .starfield {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none; /* This prevents the stars from blocking interactions with underlying elements */
-  }
-  
-  .star {
-    width: 2px;
-    height: 2px;
-    background-color: #8f959a;
-    position: absolute;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background-color: #8f959a;
+  position: absolute;
+  box-shadow: 0 0 50px rgba(217, 204, 204, 0.931);
+}

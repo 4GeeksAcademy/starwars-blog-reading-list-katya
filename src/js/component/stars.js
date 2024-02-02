@@ -14,7 +14,7 @@ export const Stars = () => {
       star.className = "star";
       star.style.left = `${getRandomInt(0, 100)}%`;
       star.style.top = `${getRandomInt(0, 100)}%`;
-      star.style.boxShadow = `0 0 5px rgba(255, 255, 255, 0.8)`;
+      star.style.boxShadow = `0 0 50px rgba(217, 204, 204, 0.931)`;
       document.getElementById("starfield").appendChild(star);
     };
 
