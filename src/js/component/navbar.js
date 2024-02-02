@@ -123,7 +123,7 @@ export const Navbar = () => {
                         to={`character/${character.id}`}
                         className="dropdown-item starwars-text fw-lighter"
                       >
-                        {character.name}
+                        <i className="fab fa-jedi-order starwars-text me-2"></i>{character.name}
                       </Link>
 
                       <i
@@ -158,7 +158,7 @@ export const Navbar = () => {
                         to={`planet/${planet.id}`}
                         className="dropdown-item starwars-text fw-lighter"
                       >
-                        {planet.name}
+                        <i className="fab fa-old-republic starwars-text me-2"></i>{planet.name}
                       </Link>
                       <i
                         onClick={(e) => {
@@ -189,7 +189,7 @@ export const Navbar = () => {
                         to={`vehicle/${vehicle.id}`}
                         className="dropdown-item starwars-text fw-lighter"
                       >
-                        {vehicle.name}
+                        <i className="fab fa-galactic-senate starwars-text me-2"></i>{vehicle.name}
                       </Link>
                       <i
                         onClick={(e) => {
