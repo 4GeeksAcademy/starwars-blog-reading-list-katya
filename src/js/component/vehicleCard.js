@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/starwars.css";
 
 export const VehicleCard = (props) => {
   const { store, actions } = useContext(Context);
-  const isFavorite = actions.checkFavorites(props.id, "Vehicles");
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    setIsFavorite(actions.checkFavorites(props.id, "Vehicles"));
+  }, [store.favoriteVehicles]);
 
   return (
     <div
@@ -65,7 +69,7 @@ export const VehicleCard = (props) => {
             }}
           >
             <i
-              className={`${isFavorite ? "fas" : "far"} fa-heart text-danger`}
+              className={(isFavorite ? "fas" : "far") + " fa-heart text-danger"}
             ></i>
           </button>
         </div>

@@ -19,7 +19,7 @@ export const Stars = () => {
     };
 
     function createStarfield() {
-      for (let i = 0; i < 1200; i++) {
+      for (let i = 0; i < 1300; i++) {
         createStar();
       }
     };

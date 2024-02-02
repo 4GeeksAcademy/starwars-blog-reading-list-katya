@@ -135,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const item = store[itemTypes.toLowerCase()].find(
           (item) => item.id === id
         );
-        console.log(item, store["favorite" + itemTypes]);
+        
         if (store["favorite" + itemTypes].some((f) => f.id == item.id)) {
           return true;
         }

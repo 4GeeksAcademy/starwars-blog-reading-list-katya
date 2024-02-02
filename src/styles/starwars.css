@@ -30,7 +30,7 @@
   color: #f9d81ba5 !important;
 }
 
-.starwars-highlight {
+.dropdown-item:active  {
   background-color: #f9d81ba5 !important;
 }
 

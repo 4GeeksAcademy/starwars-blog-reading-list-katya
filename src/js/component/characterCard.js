@@ -9,7 +9,6 @@ export const CharacterCard = (props) => {
 
   useEffect(() => {
     setIsFavorite(actions.checkFavorites(props.id, "Characters"));
-    console.log(actions.checkFavorites(props.id, "Characters"))
   }, [store.favoriteCharacters]);
 
   return (
