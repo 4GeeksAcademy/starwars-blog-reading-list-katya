@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { SearchBar } from "./searchBar";
 import "../../styles/starwars.css";
 
 export const Navbar = () => {
@@ -81,17 +82,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control starwars-border me-2 starwars-text"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="starwars-btn rounded" type="submit">
-              Search
-            </button>
-          </form>
+         <SearchBar />
         </div>
         <div className="btn-group dropstart me-5">
           <button
