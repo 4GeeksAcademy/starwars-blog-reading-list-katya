@@ -5,9 +5,8 @@ import "../../styles/starwars.css";
 
 export const CharacterCard = (props) => {
   const { store, actions } = useContext(Context);
-  const [isClicked, setIsClicked] = useState(false);
+  const isFavorite = actions.checkFavorites(props.id, "Characters");
 
- 
   return (
     <div
       className="card m-3 mb-5 starwars-bg starwars-border-light"
@@ -62,16 +61,17 @@ export const CharacterCard = (props) => {
             className="favorite-btn p-2 rounded mx-3"
             style={{ width: "40px" }}
             onClick={() => {
-              actions.addToFavorites(props.id, "Characters");
-              setIsClicked(true);
+              if (isFavorite) {
+                actions.removeFromFavorites(props.id, "Characters");
+              } else {
+                actions.addToFavorites(props.id, "Characters");
+              }
             }}
           >
             {" "}
-            {isClicked ? (
-              <i className="fas fa-heart text-danger"></i>
-            ) : (
-              <i className="far fa-heart text-danger"></i>
-            )}
+            <i
+              className={`${isFavorite ? "fas" : "far"} fa-heart text-danger`}
+            ></i>
           </button>
         </div>
       </div>

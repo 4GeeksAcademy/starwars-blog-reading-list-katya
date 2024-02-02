@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       characters: [],
       vehicles: [],
       favoritePlanets: [],
-      favoriteCharacters:[],
+      favoriteCharacters: [],
       favoriteVehicles: [],
       loading: true,
       planetView: false,
@@ -109,14 +109,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           (item) => item.id === id
         );
 
-        if (store["favorite" + itemTypes].includes(item)) {
-          alert(`${item.name} is already in your favorites`);
-        } else {
-          setStore({
-            ["favorite" + itemTypes]:
-              store["favorite" + itemTypes].concat(item),
-          });
-        }
+        setStore({
+          ["favorite" + itemTypes]: store["favorite" + itemTypes].concat(item),
+        });
+
         console.log("Favorite " + itemTypes, store["favorite" + itemTypes]);
       },
 
