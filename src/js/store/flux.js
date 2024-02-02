@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       loadSomeData: () => {
         const actions = getActions();
+
         try {
           actions.fetch("characters");
           actions.fetch("planets");
@@ -83,6 +84,36 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      getSuggestions: (searchTerm) => {
+        const store = getStore();
+        const allItems = [].concat(
+          store.characters,
+          store.planets,
+          store.vehicles
+        );
+
+        let suggestions = allItems.filter((item) => {
+          return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0;
+        });
+
+        return suggestions;
+      },
+
+      performSearch: (searchTerm) => {
+        const store = getStore();
+        const allItems = [].concat(
+          store.characters,
+          store.planets,
+          store.vehicles
+        );
+
+        let result = allItems.filter((item) => {
+          return item.name.toLowerCase() == searchTerm.toLowerCase()
+        });
+        
+        return result;
+      },
+
       togglePlanetView: () => {
         const store = getStore();
         setStore({ planetView: !store.planetView });
@@ -104,12 +135,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       openItem: (id, setDetails, itemType, itemPropertyMap) => {
         const store = getStore();
         const item = store[itemType + "s"].find((item) => item.id === id);
-
         const details = {};
+
         for (const [key, value] of Object.entries(itemPropertyMap)) {
           details[key] = item[value];
         }
-
         setDetails(details);
         setStore({ loading: false });
       },
@@ -119,6 +149,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const item = store[itemTypes.toLowerCase()].find(
           (item) => item.id === id
         );
+
         localStorage.setItem(
           "favorite" + itemTypes,
           JSON.stringify(store["favorite" + itemTypes].concat(item))
@@ -126,8 +157,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           ["favorite" + itemTypes]: store["favorite" + itemTypes].concat(item),
         });
-
-        console.log("Favorite " + itemTypes, store["favorite" + itemTypes]);
       },
 
       checkFavorites: (id, itemTypes) => {
@@ -135,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const item = store[itemTypes.toLowerCase()].find(
           (item) => item.id === id
         );
-        
+
         if (store["favorite" + itemTypes].some((f) => f.id == item.id)) {
           return true;
         }
@@ -147,6 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const updatedFavorites = store["favorite" + itemTypes].filter(
           (item) => item.id != id
         );
+
         localStorage.setItem(
           "favorite" + itemTypes,
           JSON.stringify(updatedFavorites)
