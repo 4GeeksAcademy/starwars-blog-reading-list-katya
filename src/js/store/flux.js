@@ -110,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         let result = allItems.filter((item) => {
           return item.name.toLowerCase() == searchTerm.toLowerCase()
         });
-        
+        console.log(result)
         return result;
       },
 

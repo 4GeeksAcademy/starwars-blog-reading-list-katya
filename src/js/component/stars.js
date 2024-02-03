@@ -28,7 +28,7 @@ export const Stars = () => {
   }, []); 
 
   return (
-    <div className="footer mt-auto py-3">
+    <div className="mt-auto py-3">
       <div className="starfield" id="starfield"></div>
     </div>
   );
