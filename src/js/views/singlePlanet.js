@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 export const SinglePlanet = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
+  const [isFavorite, setIsFavorite] = useState(false);
   const [planetDetails, setPlanetDetails] = useState({
     name: "",
     description: "",
@@ -27,10 +28,11 @@ export const SinglePlanet = () => {
         diameter: "diameter",
         uid: "uid",
       });
+      setIsFavorite(actions.checkFavorites(id, "Planets"));
     } else {
       actions.loadSomeData();
     }
-  }, [store.planets]);
+  }, [store.planets, store.favoritePlanets]);
 
   function handleImageError(e) {
     e.target.src =
@@ -107,6 +109,26 @@ export const SinglePlanet = () => {
                     <small className="red-text">Diameter</small>
                     <p className="red-text-active">{planetDetails.diameter}</p>
                   </div>
+                  <button
+                    type="button"
+                    href="#"
+                    className="favorite-btn p-2 rounded mx-3 mt-3"
+                    style={{ width: "40px", height: "40px" }}
+                    onClick={() => {
+                      if (isFavorite) {
+                        actions.removeFromFavorites(id, "Planets");
+                      } else {
+                        actions.addToFavorites(id, "Planets");
+                      }
+                    }}
+                  >
+                    {" "}
+                    <i
+                      className={
+                        (isFavorite ? "fas" : "far") + " fa-heart text-danger"
+                      }
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>

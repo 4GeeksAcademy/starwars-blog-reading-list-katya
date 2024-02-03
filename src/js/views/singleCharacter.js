@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 export const SingleCharacter = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
+  const [isFavorite, setIsFavorite] = useState(false);
   const [characterDetails, setCharacterDetails] = useState({
     name: "",
     description: "",
@@ -27,6 +28,7 @@ export const SingleCharacter = () => {
         eyeColor: "eye_color",
         uid: "uid",
       });
+      setIsFavorite(actions.checkFavorites(id, "Characters"));
     } else {
       actions.loadSomeData();
     }
@@ -101,6 +103,26 @@ export const SingleCharacter = () => {
                       {characterDetails.eyeColor}
                     </p>
                   </div>
+                  <button
+                    type="button"
+                    href="#"
+                    className="favorite-btn p-2 rounded mx-3 mt-3"
+                    style={{ width: "40px", height: "40px" }}
+                    onClick={() => {
+                      if (isFavorite) {
+                        actions.removeFromFavorites(id, "Characters");
+                      } else {
+                        actions.addToFavorites(id, "Characters");
+                      }
+                    }}
+                  >
+                    {" "}
+                    <i
+                      className={
+                        (isFavorite ? "fas" : "far") + " fa-heart text-danger"
+                      }
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>

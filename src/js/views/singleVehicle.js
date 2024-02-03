@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 export const SingleVehicle = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
+  const [isFavorite, setIsFavorite] = useState(false);
   const [vehicleDetails, setVehicleDetails] = useState({
     name: "",
     description: "",
@@ -27,10 +28,11 @@ export const SingleVehicle = () => {
         passengers: "passengers",
         uid: "uid",
       });
+      setIsFavorite(actions.checkFavorites(id, "Vehicles"));
     } else {
       actions.loadSomeData();
     }
-  }, [store.vehicles]);
+  }, [store.vehicles, store.favoriteVehicles]);
 
   return (
     <div className="d-flex justify-content-center mt-5">
@@ -101,6 +103,26 @@ export const SingleVehicle = () => {
                       {vehicleDetails.passengers}
                     </p>
                   </div>
+                  <button
+                    type="button"
+                    href="#"
+                    className="favorite-btn p-2 rounded mx-3 mt-3"
+                    style={{ width: "40px", height: "40px" }}
+                    onClick={() => {
+                      if (isFavorite) {
+                        actions.removeFromFavorites(id, "Vehicles");
+                      } else {
+                        actions.addToFavorites(id, "Vehicles");
+                      }
+                    }}
+                  >
+                    {" "}
+                    <i
+                      className={
+                        (isFavorite ? "fas" : "far") + " fa-heart text-danger"
+                      }
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>
