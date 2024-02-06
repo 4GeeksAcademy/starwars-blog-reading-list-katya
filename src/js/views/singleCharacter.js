@@ -17,7 +17,6 @@ export const SingleCharacter = () => {
   });
 
   useEffect(() => {
-    console.log(store.characters.length)
     if (store.characters.length > 0) {
       actions.openItem(id, setCharacterDetails, "character", {
         name: "name",
