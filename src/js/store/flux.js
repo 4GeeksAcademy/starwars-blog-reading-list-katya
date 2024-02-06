@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const itemsWithDetails = await Promise.all(itemDetailsPromises);
 
           setStore({
-            [itemTypes]: store[itemTypes].concat(itemsWithDetails),
+            [itemTypes]: itemsWithDetails,
           });
         } catch (error) {
           console.error("Error fetching data:", error);

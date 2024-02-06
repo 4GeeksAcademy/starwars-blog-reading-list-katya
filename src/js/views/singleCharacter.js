@@ -17,6 +17,7 @@ export const SingleCharacter = () => {
   });
 
   useEffect(() => {
+    console.log(store.characters.length)
     if (store.characters.length > 0) {
       actions.openItem(id, setCharacterDetails, "character", {
         name: "name",
@@ -32,7 +33,7 @@ export const SingleCharacter = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [store.characters, store.favoriteCharacters]);
+  }, [store.characters, store.favoriteCharacters, id]);
 
   return (
     <div className="d-flex justify-content-center mt-5">

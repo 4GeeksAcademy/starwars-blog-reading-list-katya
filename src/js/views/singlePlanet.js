@@ -32,7 +32,7 @@ export const SinglePlanet = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [store.planets, store.favoritePlanets]);
+  }, [store.planets, store.favoritePlanets, id]);
 
   function handleImageError(e) {
     e.target.src =

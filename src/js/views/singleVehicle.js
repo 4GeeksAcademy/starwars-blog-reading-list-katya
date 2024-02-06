@@ -32,7 +32,7 @@ export const SingleVehicle = () => {
     } else {
       actions.loadSomeData();
     }
-  }, [store.vehicles, store.favoriteVehicles]);
+  }, [store.vehicles, store.favoriteVehicles, id]);
 
   return (
     <div className="d-flex justify-content-center mt-5">
